@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from users.models import Account
@@ -26,7 +27,12 @@ class CarStatus(models.Model):
 
 class CarModel(models.Model):
     name = models.CharField(max_length=150)
-    year = models.IntegerField(max_digits=4)
+    year = models.PositiveSmallIntegerField(
+        validators=[
+            MaxValueValidator(9999),
+            MinValueValidator(1000),
+        ]
+    )
 
     def __str__(self):
         return self.name
@@ -43,7 +49,7 @@ class Province(models.Model):
     name = models.CharField(max_length=150)
     country = models.ForeignKey(
         Country,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="province",
         null=False,
     )
@@ -56,7 +62,7 @@ class City(models.Model):
     name = models.CharField(max_length=150)
     province = models.ForeignKey(
         Province,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="city",
         null=False,
     )

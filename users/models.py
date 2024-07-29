@@ -25,7 +25,10 @@ class AccountCosmeticRoles(models.Model):
         Account,
         on_delete=models.CASCADE,
     )
-    cosmetic_role = models.ForeignKey(CosmeticRole)
+    cosmetic_role = models.ForeignKey(
+        CosmeticRole,
+        on_delete=models.CASCADE,
+    )
 
     def __str__(self):
         return self.name
