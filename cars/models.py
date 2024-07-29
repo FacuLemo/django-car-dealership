@@ -1,5 +1,6 @@
-from django.contrib.auth.models import User
 from django.db import models
+
+from users.models import Account
 
 
 class Category(models.Model):
@@ -23,7 +24,12 @@ class CarStatus(models.Model):
         return self.name
 
 
-# Class Client to be implemented.
+class CarModel(models.Model):
+    name = models.CharField(max_length=150)
+    year = models.IntegerField(max_digits=4)
+
+    def __str__(self):
+        return self.name
 
 
 class Country(models.Model):
@@ -59,18 +65,9 @@ class City(models.Model):
         return self.name
 
 
-class CarModel(models.Model):
-    name = models.CharField(max_length=150)
-    year = models.IntegerField(max_digits=4)
-
-    def __str__(self):
-        return self.name
-
-
 class Car(models.Model):
-    # author may need to be replaced by "client"
-    author = models.ForeignKey(
-        User,
+    account = models.ForeignKey(  # Previously known as "Client"
+        Account,  # "Account" model  is imported from users.models.
         on_delete=models.CASCADE,
     )
     bought = models.BooleanField(default=False)
@@ -126,3 +123,32 @@ class CarImage(models.Model):
 
     def __str__(self):
         return self.description or f"Image of {self.product.name}"
+
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=350)
+    account = models.ForeignKey(
+        Account,
+        on_delete=models.CASCADE,
+    )
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class AccountOwnedCars(models.Model):
+    account = models.ForeignKey(
+        Account,
+        on_delete=models.CASCADE,
+    )
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
