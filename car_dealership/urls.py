@@ -17,6 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from car_dealership.main_views import (
+    IndexView
+)
+from car_dealership.login_views import (
+    LoginView,
+    LogoutView,
+    RegisterView
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(route='', view=IndexView.as_view(), name='index'),
+    path(route='login/', view=LoginView.as_view(), name='login'),
+    path(route='logout/', view=LogoutView.as_view(), name='logout'),
+    path(route='register/', view=RegisterView.as_view(), name='register')
 ]
