@@ -18,6 +18,7 @@ class UserRegisterForm(UserCreationForm):
             'password2',
             'first_name',
             'last_name',
+
         ]
         
         widgets = {

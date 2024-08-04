@@ -5,14 +5,20 @@ from users.models import Account
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(
+        max_length=150,
+        unique=True,
+    )
 
     def __str__(self):
         return self.name
 
 
 class Brand(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(
+        max_length=150,
+        unique=True,
+    )
 
     def __str__(self):
         return self.name
@@ -50,7 +56,6 @@ class Province(models.Model):
     country = models.ForeignKey(
         Country,
         on_delete=models.CASCADE,
-        related_name="province",
         null=False,
     )
 
@@ -63,7 +68,6 @@ class City(models.Model):
     province = models.ForeignKey(
         Province,
         on_delete=models.CASCADE,
-        related_name="city",
         null=False,
     )
 
@@ -83,39 +87,23 @@ class Car(models.Model):
     )
     brand = models.ForeignKey(
         Brand,
-        on_delete=models.SET_NULL,
-        related_name="car",
-        null=True,
+        on_delete=models.RESTRICT,
     )
     car_model = models.ForeignKey(
         CarModel,
-        on_delete=models.SET_NULL,
-        related_name="products",
-        null=True,
+        on_delete=models.RESTRICT,
     )
     category = models.ForeignKey(
         Category,
-        on_delete=models.SET_NULL,
-        related_name="products",
-        null=True,
+        on_delete=models.RESTRICT,
     )
     car_status = models.ForeignKey(
         CarStatus,
-        on_delete=models.SET_NULL,
-        related_name="products",
-        null=True,
+        on_delete=models.RESTRICT,
     )
     city = models.ForeignKey(
         City,
-        on_delete=models.SET_NULL,
-        related_name="products",
-        null=True,
-    )
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
-        related_name="products",
-        null=True,
+        on_delete=models.RESTRICT,
     )
 
     def __str__(self):
@@ -126,7 +114,6 @@ class CarImage(models.Model):
     car = models.ForeignKey(
         Car,
         on_delete=models.CASCADE,
-        related_name="images",
     )
     image = models.ImageField(upload_to="car_images/", null=True)
     description = models.TextField(blank=True, null=True)

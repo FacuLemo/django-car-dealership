@@ -15,6 +15,7 @@ class Account(models.Model):
 
 class CosmeticRole(models.Model):
     name = models.CharField(max_length=200)
+    color = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
