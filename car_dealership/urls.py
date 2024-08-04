@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 from car_dealership.main_views import (
     IndexView
 )
@@ -32,4 +35,4 @@ urlpatterns = [
     path(route='login/', view=LoginView.as_view(), name='login'),
     path(route='logout/', view=LogoutView.as_view(), name='logout'),
     path(route='register/', view=RegisterView.as_view(), name='register')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
