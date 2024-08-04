@@ -123,8 +123,12 @@ class Car(models.Model):
 
 
 class CarImage(models.Model):
-    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="images")
-    # image = models.ImageField(upload_to='product_images/')
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        related_name="images",
+    )
+    image = models.ImageField(upload_to="car_images/", null=True)
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
