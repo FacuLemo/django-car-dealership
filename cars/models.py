@@ -1,7 +1,6 @@
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-
-from users.models import Account
 
 
 class Category(models.Model):
@@ -76,8 +75,8 @@ class City(models.Model):
 
 
 class Car(models.Model):
-    account = models.ForeignKey(  # Previously known as "Client"
-        Account,  # "Account" model  is imported from users.models.
+    user = models.ForeignKey(  # Previously known as "Client"
+        User,
         on_delete=models.CASCADE,
     )
     bought = models.BooleanField(default=False)
@@ -124,8 +123,8 @@ class CarImage(models.Model):
 
 class Comment(models.Model):
     comment = models.CharField(max_length=350)
-    account = models.ForeignKey(
-        Account,
+    user = models.ForeignKey(
+        User,
         on_delete=models.CASCADE,
     )
     car = models.ForeignKey(
@@ -137,9 +136,9 @@ class Comment(models.Model):
         return self.name
 
 
-class AccountOwnedCars(models.Model):
-    account = models.ForeignKey(
-        Account,
+class UserBoughtCars(models.Model):
+    user = models.ForeignKey(
+        User,
         on_delete=models.CASCADE,
     )
     car = models.ForeignKey(
