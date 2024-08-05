@@ -19,6 +19,11 @@ class Brand(models.Model):
         max_length=150,
         unique=True,
     )
+    image = models.ImageField(
+        upload_to="brand_images/", 
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -39,7 +44,11 @@ class CarModel(models.Model):
             MinValueValidator(1000),
         ]
     )
-
+    brand = models.ForeignKey(
+        Brand,
+        on_delete=models.DO_NOTHING,
+        null=True
+    )
     def __str__(self):
         return self.name
 

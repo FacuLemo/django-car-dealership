@@ -23,3 +23,10 @@
 ```bash
   python3 manage.py runserver
 ```
+
+/home <- lista de todos los autos, filter by status
+/profile/:account <- usuario & todos sus autos
+/car (list & create & update) [list es privado, create & update es acceso parcial a autor + staff]
+/category (list & create & update) [privados]
+/brand (list & create & update)[privados]
+/roles (list & create & update)[privados]
