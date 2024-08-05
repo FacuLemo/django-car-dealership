@@ -1,7 +1,6 @@
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-
-from users.models import Account
 
 
 class Category(models.Model):
@@ -20,9 +19,9 @@ class Brand(models.Model):
         unique=True,
     )
     image = models.ImageField(
-        upload_to="brand_images/", 
+        upload_to="brand_images/",
         null=True,
-        blank=True
+        blank=True,
     )
 
     def __str__(self):
@@ -44,11 +43,8 @@ class CarModel(models.Model):
             MinValueValidator(1000),
         ]
     )
-    brand = models.ForeignKey(
-        Brand,
-        on_delete=models.DO_NOTHING,
-        null=True
-    )
+    brand = models.ForeignKey(Brand, on_delete=models.DO_NOTHING, null=True)
+
     def __str__(self):
         return self.name
 
@@ -85,8 +81,8 @@ class City(models.Model):
 
 
 class Car(models.Model):
-    account = models.ForeignKey(  # Previously known as "Client"
-        Account,  # "Account" model  is imported from users.models.
+    seller = models.ForeignKey(  # Previously known as "Client"
+        User,
         on_delete=models.CASCADE,
     )
     bought = models.BooleanField(default=False)
@@ -133,8 +129,8 @@ class CarImage(models.Model):
 
 class Comment(models.Model):
     comment = models.CharField(max_length=350)
-    account = models.ForeignKey(
-        Account,
+    user = models.ForeignKey(
+        User,
         on_delete=models.CASCADE,
     )
     car = models.ForeignKey(
@@ -146,9 +142,9 @@ class Comment(models.Model):
         return self.name
 
 
-class AccountOwnedCars(models.Model):
-    account = models.ForeignKey(
-        Account,
+class UserBoughtCars(models.Model):
+    user = models.ForeignKey(
+        User,
         on_delete=models.CASCADE,
     )
     car = models.ForeignKey(
