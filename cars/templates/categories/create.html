@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">Guardar</input>
+    </form>
+    {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+        <p>{{field}} {{error}}</p>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

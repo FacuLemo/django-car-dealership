@@ -3,6 +3,7 @@ from cars.models import (
     Brand,
     CarModel,
     Car,
+    Category
 )
 from utils.check_exists import check_exists
         
@@ -42,3 +43,15 @@ class CarModelForm(forms.ModelForm):
             "year": forms.DateInput(),
             "brand": forms.Select(attrs={'readonly': 'readonly'})
         }
+        
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = [
+            "name"
+        ]
+        widgets = {
+            "name": forms.TextInput()
+        }
+        
+        

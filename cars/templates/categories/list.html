@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+    {% for category in categories %}
+    <p>{{category.name}}</p>
+    <a href="{% url 'category_update' category.id %}">EDIT</a>
+    <form action="{% url 'category_delete' category.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">BORRAR</button>
+    </form>
+    {% endfor %}
+{% endblock %}
