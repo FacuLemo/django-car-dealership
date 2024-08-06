@@ -8,6 +8,11 @@
         {% if brand.image %}
             <img src="{{brand.image.url}}">
         {% endif %}
+        <a href="{% url 'brand_update' brand.id %}">EDIT</a>
+        <form action="{% url 'brand_delete' brand.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">BORRAR</button>
+        </form>
     {% endfor %}
 
 {% endblock %}

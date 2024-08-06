@@ -3,7 +3,8 @@ from django.urls import path
 from cars.views import (
     BrandCreateView,
     BrandUpdateView,
-    BrandListView
+    BrandListView,
+    BrandDeleteView
 )
 
 urlpatterns = [
@@ -21,5 +22,10 @@ urlpatterns = [
         route='brand/<int:id>',
         view=BrandUpdateView.as_view(),
         name='brand_update'
+    ),
+    path(
+        route='brand/delete/<int:id>',
+        view=BrandDeleteView.as_view(),
+        name='brand_delete'
     )
 ]

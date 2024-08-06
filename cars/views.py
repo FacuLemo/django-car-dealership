@@ -45,7 +45,7 @@ class BrandCreateView(BrandView):
         
         if form.is_valid():
             form.save()
-            return redirect('brand_create')
+            return redirect('brand_list')
 
         return render(
             request,
@@ -77,7 +77,7 @@ class BrandUpdateView(BrandView):
         form = self.form_class(request.POST, request.FILES, instance=brand)
         if form.is_valid():
             form.save()
-            return redirect('brand_create')
+            return redirect('brand_list')
         return render(
             request,
             self.template_name,
@@ -85,4 +85,11 @@ class BrandUpdateView(BrandView):
                 form=form
             )
         )
-            
+        
+class BrandDeleteView(BrandView):
+    def post(self, request, id):
+        print('HALLELUJAH')
+        repo = self.repo()
+        brand = repo.get_by_id(id)
+        repo.delete(brand)
+        return redirect('brand_list')
