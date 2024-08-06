@@ -15,7 +15,7 @@ def check_exists(form, propertyName):
     property_exists = instance.objects.filter(**kwargs).exists()
     print(property_exists)
     if property_exists:
-        raise ValidationError(f"{property} ya existe")
+        raise ValidationError(f"{property} ya está en uso")
     return property
             
 class BrandForm(forms.ModelForm):

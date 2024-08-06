@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    {% for brand in brands %}
+        <p>{{brand.name}}</p>
+        {% if brand.image %}
+            <img src="{{brand.image.url}}">
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
