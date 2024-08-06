@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% block content %}
+    {% for role in roles %}
+        <p>{{role.name}}</p>
+        <p>{{role.color}}</p>
+        <a href="{% url 'role_update' role.id %}">EDIT</a>
+        <form action="{% url 'role_delete' role.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">BORRAR</button>
+        </form>
+    {% endfor %}
+{% endblock %}

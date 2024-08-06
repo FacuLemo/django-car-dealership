@@ -29,11 +29,13 @@ from car_dealership.login_views import (
     RegisterView
 )
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(route='', view=IndexView.as_view(), name='index'),
     path(route='login/', view=LoginView.as_view(), name='login'),
     path(route='logout/', view=LogoutView.as_view(), name='logout'),
     path(route='register/', view=RegisterView.as_view(), name='register'),
-    path('cars/', include("cars.urls"))
+    path('cars/', include("cars.urls")),
+    path('users/', include("users.urls"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

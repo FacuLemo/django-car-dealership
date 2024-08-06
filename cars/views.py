@@ -88,7 +88,6 @@ class BrandUpdateView(BrandView):
         
 class BrandDeleteView(BrandView):
     def post(self, request, id):
-        print('HALLELUJAH')
         repo = self.repo()
         brand = repo.get_by_id(id)
         repo.delete(brand)

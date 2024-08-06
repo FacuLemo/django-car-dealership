@@ -4,20 +4,8 @@ from cars.models import (
     CarModel,
     Car,
 )
-from django.core.exceptions import ValidationError
-
-def check_exists(form, propertyName):
-    property = form.cleaned_data.get(propertyName)
-    instance = type(form.save(commit=False))
-    kwargs = {
-        '{0}'.format(propertyName): property
-    }
-    property_exists = instance.objects.filter(**kwargs).exists()
-    print(property_exists)
-    if property_exists:
-        raise ValidationError(f"{property} ya está en uso")
-    return property
-            
+from utils.check_exists import check_exists
+        
 class BrandForm(forms.ModelForm):
     class Meta:
         model = Brand

@@ -1,13 +1,14 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.core.exceptions import ValidationError
+from utils.check_exists import check_exists
+from users.models import CosmeticRole
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField(
-        required = True,
-        help_text = "Email Requerido"
-    )
+    # email = forms.EmailField(
+    #     required = True,
+    #     help_text = "Email Requerido"
+    # )
     
     class Meta:
         model = User
@@ -33,10 +34,7 @@ class UserRegisterForm(UserCreationForm):
         }
     
     def clean_email(self):
-        email = self.cleaned_data.get('email')
-        email_exists = User.objects.filter(email=email).exists()
-        if email_exists:
-            raise ValidationError('Este email ya está registrado')
+        email = check_exists(self, 'email')
         return email
     
     def save(self, commit=True):
@@ -52,3 +50,21 @@ class UserRegisterForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+class CosmeticRoleForm(forms.ModelForm):
+    class Meta:
+        model = CosmeticRole
+        fields = [
+            'name',
+            'color',
+        ]
+        
+        widgets = {
+            'name': forms.TextInput(),
+            'color': forms.TextInput()
+        }
+        
+    def clean_name(self):
+        name = check_exists(self, 'name')
+        return name
+    
