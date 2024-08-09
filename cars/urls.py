@@ -6,6 +6,18 @@ from cars.views.brand_views import (
     BrandListView,
     BrandUpdateView,
 )
+from cars.views.car_model_views import (
+    CarModelCreateView,
+    CarModelDeleteView,
+    CarModelListView,
+    CarModelUpdateView,
+)
+from cars.views.car_status_views import (
+    CarStatusCreateView,
+    CarStatusDeleteView,
+    CarStatusListView,
+    CarStatusUpdateView,
+)
 from cars.views.category_views import (
     CategoryCreateView,
     CategoryDeleteView,
@@ -15,43 +27,83 @@ from cars.views.category_views import (
 
 urlpatterns = [
     path(
-        route='brand/',
+        route="brand/",
         view=BrandListView.as_view(),
-        name='brand_list'
+        name="brand_list",
     ),
     path(
-        route='brand/create', 
-        view=BrandCreateView.as_view(), 
-        name='brand_create'
+        route="brand/create",
+        view=BrandCreateView.as_view(),
+        name="brand_create",
     ),
     path(
-        route='brand/<int:id>',
+        route="brand/<int:id>",
         view=BrandUpdateView.as_view(),
-        name='brand_update'
+        name="brand_update",
     ),
     path(
-        route='brand/delete/<int:id>',
+        route="brand/delete/<int:id>",
         view=BrandDeleteView.as_view(),
-        name='brand_delete'
+        name="brand_delete",
     ),
     path(
-        route='category/',
+        route="category/",
         view=CategoryListView.as_view(),
-        name='category_list'
+        name="category_list",
     ),
     path(
-        route='category/create',
+        route="category/create",
         view=CategoryCreateView.as_view(),
-        name='category_create'
+        name="category_create",
     ),
     path(
-        route='category/<int:id>',
+        route="category/<int:id>",
         view=CategoryUpdateView.as_view(),
-        name='category_update'
+        name="category_update",
     ),
     path(
-        route='category/delete/<int:id>',
+        route="category/delete/<int:id>",
         view=CategoryDeleteView.as_view(),
-        name='category_delete'
-    )
+        name="category_delete",
+    ),
+    path(
+        route="car_status/",
+        view=CarStatusListView.as_view(),
+        name="car_status_list",
+    ),
+    path(
+        route="car_status/create",
+        view=CarStatusCreateView.as_view(),
+        name="car_status_create",
+    ),
+    path(
+        route="car_status/<int:id>",
+        view=CarStatusUpdateView.as_view(),
+        name="car_status_update",
+    ),
+    path(
+        route="car_status/delete/<int:id>",
+        view=CarStatusDeleteView.as_view(),
+        name="car_status_delete",
+    ),
+    path(
+        route="car_model/",
+        view=CarModelListView.as_view(),
+        name="car_model_list",
+    ),
+    path(
+        route="car_model/create",
+        view=CarModelCreateView.as_view(),
+        name="car_model_create",
+    ),
+    path(
+        route="car_model/<int:id>",
+        view=CarModelUpdateView.as_view(),
+        name="car_model_update",
+    ),
+    path(
+        route="car_model/delete/<int:id>",
+        view=CarModelDeleteView.as_view(),
+        name="car_model_delete",
+    ),
 ]

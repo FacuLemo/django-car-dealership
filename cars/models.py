@@ -90,10 +90,6 @@ class Car(models.Model):
         max_digits=10,
         decimal_places=2,
     )
-    brand = models.ForeignKey(
-        Brand,
-        on_delete=models.RESTRICT,
-    )
     car_model = models.ForeignKey(
         CarModel,
         on_delete=models.RESTRICT,
