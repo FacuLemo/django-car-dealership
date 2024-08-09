@@ -1,18 +1,71 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-{% block content %}
 
-    {% for brand in brands %}
-        <p>{{brand.name}}</p>
-        {% if brand.image %}
-            <img src="{{brand.image.url}}">
-        {% endif %}
-        <a href="{% url 'brand_update' brand.id %}">EDIT</a>
-        <form action="{% url 'brand_delete' brand.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit">BORRAR</button>
-        </form>
-    {% endfor %}
+{% block content %}
+<!-- Container Principal -->
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Gestión de Marcas</h2>
+        <a class="btn btn-success" href="{% url 'brand_create' %}">Agregar Marca</a>
+    </div>
+
+    <!-- Tabla CRUD -->
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for brand in brands %}
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>
+
+                    {% if brand.image %}
+                    <img src="{{brand.image.url}}" style="height: 150px;">
+                    {% endif %}
+                </td>
+                <td>{{ brand.name }}</td>
+                <td>
+                    <a href="{% url 'brand_update' brand.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#deletebrandModal{{ brand.id }}">Eliminar</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal para Eliminar Marca -->
+{% for brand in brands %}
+<div class="modal fade" id="deletebrandModal{{ brand.id }}" tabindex="-1"
+    aria-labelledby="deletebrandModalLabel{{ brand.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletebrandModalLabel{{ brand.id }}">Eliminar Marca</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar la marca "{{ brand.name }}"?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url 'brand_delete' brand.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}

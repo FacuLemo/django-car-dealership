@@ -2,15 +2,15 @@ from django.urls import path
 
 from cars.views.brand_views import (
     BrandCreateView,
-    BrandUpdateView,
+    BrandDeleteView,
     BrandListView,
-    BrandDeleteView
+    BrandUpdateView,
 )
 from cars.views.category_views import (
     CategoryCreateView,
-    CategoryUpdateView,
+    CategoryDeleteView,
     CategoryListView,
-    CategoryDeleteView
+    CategoryUpdateView,
 )
 
 urlpatterns = [
