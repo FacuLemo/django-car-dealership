@@ -1,31 +1,37 @@
 from django.urls import path
 
-from users.views import (
+from users.views.role_views import (
     RoleCreateView,
     RoleDeleteView,
     RoleListView,
-    RoleUpdateView
+    RoleUpdateView,
 )
+from users.views.user_views import UserProfileView
 
 urlpatterns = [
     path(
-        route='role/',
+        route="<int:id>",
+        view=UserProfileView.as_view(),
+        name="user_profile",
+    ),
+    path(
+        route="role/",
         view=RoleListView.as_view(),
-        name='role_list'
+        name="role_list",
     ),
     path(
-        route='role/create',
+        route="role/create",
         view=RoleCreateView.as_view(),
-        name='role_create'
+        name="role_create",
     ),
     path(
-        route='role/<int:id>',
+        route="role/<int:id>",
         view=RoleUpdateView.as_view(),
-        name='role_update'
+        name="role_update",
     ),
     path(
-        route='role/delete/<int:id>',
+        route="role/delete/<int:id>",
         view=RoleDeleteView.as_view(),
-        name='role_delete'
-    )
+        name="role_delete",
+    ),
 ]

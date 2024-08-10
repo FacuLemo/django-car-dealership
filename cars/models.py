@@ -108,7 +108,7 @@ class Car(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.car_model
 
 
 class CarImage(models.Model):
@@ -135,7 +135,7 @@ class Comment(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.comment
 
 
 class UserBoughtCars(models.Model):
@@ -150,4 +150,4 @@ class UserBoughtCars(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.date
