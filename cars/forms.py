@@ -1,6 +1,12 @@
 from django import forms
 
-from cars.models import Brand, CarModel, CarStatus, Category
+from cars.models import (
+    Brand, 
+    CarModel, 
+    CarStatus, 
+    Category,
+    Car,
+)
 from utils.check_exists import check_exists
 
 
@@ -62,4 +68,22 @@ class CarStatusForm(forms.ModelForm):
             "name": forms.TextInput(
                 attrs={"class": "form-control"},
             )
+        }
+
+class CarForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        fields = [
+            "price",
+            "car_model",
+            "category",
+            "car_status",
+            "city"
+        ]
+        widgets = {
+            "price": forms.NumberInput(),
+            "car_model": forms.Select(),
+            "category": forms.Select(),
+            "car_status": forms.Select(),
+            "city": forms.Select()
         }

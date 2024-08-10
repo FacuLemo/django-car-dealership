@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% block content %}
+    {% for car in cars %}
+        <p>{{car.car_model}}</p>
+        <p>{{car.category}}</p>
+        <p>{{car.car_status}}</p>
+        <p>{{car.city}}</p>
+        {% if not car.bought %} 
+            <p>A la venta!</p>
+            <p>{{car.price}}</p>
+        {% else %}
+            <p>Vendido.</p>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

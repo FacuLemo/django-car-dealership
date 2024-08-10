@@ -26,7 +26,7 @@
 
 /home <- lista de todos los autos, filter by status
 /profile/:account <- usuario & todos sus autos
-/car (list & create & update) [list es privado, create & update es acceso parcial a autor + staff]
-/category (list & create & update) [privados (para staff y admin)]
+/car (list & create & update) [list es privado, create & update es acceso parcial a autor + staff] :check:
+/category (list & create & update) [privados (para staff y admin)] :check:
 /brand (list & create & update) [privados (para staff y admin)] :check:
 /roles (list & create & update) [privados (para staff y admin)] :check:
