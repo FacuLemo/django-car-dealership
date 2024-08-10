@@ -21,4 +21,4 @@ class UserCosmeticRoles(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.cosmetic_role.name

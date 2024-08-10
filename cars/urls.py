@@ -113,23 +113,23 @@ urlpatterns = [
         name="car_model_delete",
     ),
     path(
-        route="cars/",
+        route="",
         view=CarListView.as_view(),
         name="car_list",
     ),
     path(
-        route="cars/sell",
+        route="sell/",
         view=CarCreateView.as_view(),
         name="car_create",
     ),
     path(
-        route="cars/update-sale/<int:id>",
+        route="update-sale/<int:id>",
         view=CarUpdateView.as_view(),
         name="car_update",
     ),
     path(
-        route="cars/delete-sale",
+        route="delete-sale/",
         view=CarDeleteView.as_view(),
         name="car_delete",
-    )
+    ),
 ]

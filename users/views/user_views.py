@@ -19,7 +19,7 @@ class UserProfileView(RoleView):
         repo = self.repo()
         repocars = self.repocars()
         user = repo.get_or_404(id)
-        bought_cars = repocars.filter_by_property_name(user_id, user.id)
+        bought_cars = repocars.filter_by_user_id(user.id)
 
         return render(
             request,
