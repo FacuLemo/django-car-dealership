@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from users.models import CosmeticRole
+from users.models import CosmeticRole, UserCosmeticRoles
 from utils.check_exists import check_exists
 
 
@@ -72,3 +72,17 @@ class CosmeticRoleForm(forms.ModelForm):
     def clean_name(self):
         name = check_exists(self, "name")
         return name
+
+
+class UserRoleForm(forms.ModelForm):
+    class Meta:
+        model = UserCosmeticRoles
+        fields = [
+            "user",
+            "cosmetic_role",
+        ]
+
+        widgets = {
+            "user": forms.Select(attrs={"class": "form-control"}),
+            "cosmetic_role": forms.Select(attrs={"class": "form-control"}),
+        }

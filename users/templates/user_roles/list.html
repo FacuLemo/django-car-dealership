@@ -1,0 +1,62 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+ <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Gestión de Roles de Usuarios</h2>
+        <a class="btn btn-success" href="{% url 'user_role_create' %}" >Agregar Rol</a>
+    </div>
+
+    <!-- Tabla CRUD -->
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Rol</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user_role in user_roles %}
+            <tr>
+                <td>{{ user_role.id }}</td>
+                <td>{{ user_role.user }}</td>
+                <td>{{ user_role.cosmetic_role.name }}</td>
+                <td>{{ user_role.cosmetic_role.color }}</td>
+                <td>
+                    <a href="{% url 'user_role_update' user_role.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteRoleModal{{ user_role.id }}">Eliminar</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal para Eliminar relación Rol-Usuario -->
+{% for user_role in user_roles %}
+<div class="modal fade" id="deleteRoleModal{{ user_role.id }}" tabindex="-1" aria-labelledby="deleteRoleModalLabel{{ user_role.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteRoleModalLabel{{ user_role.id }}">Eliminar Rol</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar el rol "{{ user_role.cosmetic_role.name }}" de {{user_role.user}}?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url 'user_role_delete' user_role.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
