@@ -42,15 +42,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for car in bought_cars %}
+                {% for sale in bought_cars %}
                 <tr>
                     <td>
-                        {% if car.image %}
-                            <img src="{{car.image.url}}" style="height: 150px;">
+                        {% if sale.car.image %}
+                            <img src="{{sale.car.image.url}}" style="height: 150px;">
                         {% endif %}
                     </td>
-                    <td>{{ car.car_model.brand.name }}</td>
-                    <td>{{ car.car_model.name }}</td>
+                    <td>{{ sale.car.car_model.brand.name }}</td>
+                    <td>{{ sale.car.car_model.name }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

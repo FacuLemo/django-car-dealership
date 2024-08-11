@@ -24,6 +24,7 @@ from cars.views.car_views import (
     CarDetailView,
     CarListView,
     CarUpdateView,
+    CarSaleView,
 )
 from cars.views.category_views import (
     CategoryCreateView,
@@ -151,5 +152,10 @@ urlpatterns = [
         route="delete-comment/<int:id>",
         view=DeleteComment.as_view(),
         name="delete_comment",
+    ),
+    path(
+        route="make-sale/<int:id>",
+        view=CarSaleView.as_view(),
+        name="make_sale",
     ),
 ]

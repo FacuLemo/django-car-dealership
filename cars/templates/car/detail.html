@@ -27,13 +27,16 @@
                 <a href="{% url 'car_delete' car.id %}" class="btn btn-outline-danger">borrar</a>
                 {% endif %}
                 {% if not car.bought and not user.id == car.seller.id %}
-                <a href="" class="btn btn-outline-primary">COMPRAR!</a>
-                <!-- AGREGAR USER BOUGHT CARS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                <form action="{% url 'make_sale' car.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-primary">COMPRAR!</button>
+                </form>
                 {% endif %}
             </div>
         </div>
     </div>
     <!-- agregar comment -->
+    {% if user.is_authenticated %}
     <div class="comment-form">
         <h4>Dejar un Comentario</h4>
         <form action="{% url 'create_comment' %}" method="post">
@@ -56,6 +59,7 @@
         </div>
         {% endif %}
     </div>
+    {% endif %}
     <!-- listado comentarios -->
     <div class="comments-section mb-4 mt-5">
         <h4>Comentarios</h4>

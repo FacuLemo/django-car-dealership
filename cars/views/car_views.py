@@ -6,6 +6,7 @@ from cars.forms import CarForm, CommentForm
 from cars.models import Car
 from cars.repositories.car_repository import CarRepository
 from cars.repositories.comment_repository import CommentRepository
+from cars.repositories.user_bought_cars_repository import UserBoughtCarsRepository
 
 
 class CarView(View):
@@ -137,3 +138,16 @@ class CarDeleteView(LoginRequiredMixin, CarView):
         car = repo.get_by_id(id)
         repo.delete(car)
         return redirect("car_list")
+
+class CarSaleView(LoginRequiredMixin, CarView):
+    def post(self, request, id):
+        repo = self.repo()
+        sale_repo = UserBoughtCarsRepository()
+        
+        car = repo.get_by_id(id)
+        user = request.user
+        
+        repo.set_sold(car)
+        sale_repo.make_sale(user, car)
+        
+        return redirect(request.META["HTTP_REFERER"])
