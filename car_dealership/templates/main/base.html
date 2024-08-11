@@ -35,6 +35,7 @@
                 <p class="mx-2 my-0">Logeado como {{user}}</p>
                 <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'logout' %}">Salir</a>
                 {% else %}
+                <p class="mx-2 my-0">No estás logeado</p>
                 <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'login' %}">Ingresar</a>
                 {% endif %}
 

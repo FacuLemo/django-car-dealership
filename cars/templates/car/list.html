@@ -55,8 +55,6 @@
                     <p class="card-text text-danger"><strong>Vendido.</strong></p>
                 {% endif %}
             </div>
-
-            <!-- Pie de la tarjeta -->
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <small class="text-muted">Publicado por {{ car.seller }}</small>
                 <a href="{% url 'car_detail' car.id %}" class="btn btn-outline-primary">Ver Detalles</a>

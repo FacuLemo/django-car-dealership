@@ -23,17 +23,17 @@
             <small class="text-muted">Publicado por {{ car.seller }}</small>
             <div>
                 {%if user.id == car.seller.id %}
-                    <a href="{% url 'car_update' car.id %}" class="btn btn-outline-primary">editar</a>
-                    <a href="{% url 'car_delete' car.id %}" class="btn btn-outline-danger">borrar</a>
+                <a href="{% url 'car_update' car.id %}" class="btn btn-outline-primary">editar</a>
+                <a href="{% url 'car_delete' car.id %}" class="btn btn-outline-danger">borrar</a>
                 {% endif %}
                 {% if not car.bought and not user.id == car.seller.id %}
-                    <a href="" class="btn btn-outline-primary">COMPRAR!</a>
-                    <!-- AGREGAR USER BOUGHT CARS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                <a href="" class="btn btn-outline-primary">COMPRAR!</a>
+                <!-- AGREGAR USER BOUGHT CARS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                 {% endif %}
             </div>
         </div>
     </div>
-    <!-- Formulario de Comentarios -->
+    <!-- agregar comment -->
     <div class="comment-form">
         <h4>Dejar un Comentario</h4>
         <form action="{% url 'create_comment' %}" method="post">
@@ -56,8 +56,7 @@
         </div>
         {% endif %}
     </div>
-
-    <!-- Comentarios -->
+    <!-- listado comentarios -->
     <div class="comments-section mb-4 mt-5">
         <h4>Comentarios</h4>
         <hr>
