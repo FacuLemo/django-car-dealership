@@ -24,14 +24,15 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mis autos</a>
+                        <a class="nav-link" href="{% url 'user_profile' user.id%}">Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">publicar un auto</a>
+                        <a class="nav-link" href="{% url 'car_create' %}">Publicar un auto</a>
                     </li>
                     {% endif %}
                 </ul>
                 {% if user.is_authenticated %}
+                <p class="mx-2 my-0">Logeado como {{user}}</p>
                 <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'logout' %}">Salir</a>
                 {% else %}
                 <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'login' %}">Ingresar</a>

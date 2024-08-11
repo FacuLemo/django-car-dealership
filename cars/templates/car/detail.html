@@ -1,27 +1,90 @@
 {% extends "main/base.html" %}
-{% block content %}
-    {{car.car_model}}
-    <hr>
-    {% if comments %}
-        {% for comment in comments %}
-            {{comment.comment}}
-            <form action="{% url 'delete_comment' comment.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
-        {% endfor %}
-    {% endif %}
 
-    <form action="{% url 'create_comment' %}" method="post">
-        {% csrf_token %}
-        {{comment_form.comment}}
-        {{comment_form.user}}
-        {{comment_form.car}}
-        <button type="submit">Comentar</button>
-    </form>
-    {% if form.errors %}
-    {% for field, errors in form.errors.items %}
-        <li><strong>{{field}}</strong>: {{error}}</li>
-    {% endfor %}
-{% endif %}
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Detalles del Auto -->
+    <div class="card mb-4 shadow-sm">
+        <img src="{{ car.image_url }}" class="card-img-top" alt="imagen del auto modelo {{ car.car_model }}">
+        <div class="card-body">
+            <h3 class="card-title">{{ car.car_model.brand }} {{ car.car_model }}</h3>
+            <h6 class="card-subtitle mb-2 text-muted">{{ car.category }}</h6>
+            <p class="card-text"><strong>Status:</strong> {{ car.car_status }}</p>
+            <p class="card-text"><strong>Ciudad:</strong> {{ car.city }}</p>
+            <p class="card-text"><strong>Descripción:</strong> {{ car.description }}</p>
+            {% if not car.bought %}
+            <p class="card-text text-success"><strong>A la venta!</strong></p>
+            <p class="card-text"><strong>Precio:</strong> ${{ car.price }}</p>
+            {% else %}
+            <p class="card-text text-danger"><strong>Vendido.</strong></p>
+            {% endif %}
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            <small class="text-muted">Publicado por {{ car.seller }}</small>
+            <div>
+                {%if user.id == car.seller.id %}
+                    <a href="{% url 'car_update' car.id %}" class="btn btn-outline-primary">editar</a>
+                    <a href="{% url 'car_delete' car.id %}" class="btn btn-outline-danger">borrar</a>
+                {% endif %}
+                {% if not car.bought and not user.id == car.seller.id %}
+                    <a href="" class="btn btn-outline-primary">COMPRAR!</a>
+                    <!-- AGREGAR USER BOUGHT CARS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Formulario de Comentarios -->
+    <div class="comment-form">
+        <h4>Dejar un Comentario</h4>
+        <form action="{% url 'create_comment' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ comment_form.comment}}
+            </div>
+            <input type="hidden" name="user" value="{{ request.user.id }}">
+            <input type="hidden" name="car" value="{{ car.id }}">
+            <button type="submit" class="btn btn-primary">Comentar</button>
+        </form>
+
+        {% if form.errors %}
+        <div class="alert alert-danger mt-3">
+            <ul>
+                {% for field, errors in form.errors.items %}
+                <li><strong>{{ field }}</strong>: {{ errors }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Comentarios -->
+    <div class="comments-section mb-4 mt-5">
+        <h4>Comentarios</h4>
+        <hr>
+        {% if comments %}
+        {% for comment in comments %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p class="card-text">{{ comment.comment }}</p>
+            </div>
+            <div class="card-footer text-muted d-flex">
+                <p class="flex-fill my-0">
+                    Comentado por {{ comment.user }}
+                </p>
+                {%if user.id == comment.user.id or user.is_staff%}
+                <form action="{% url 'delete_comment' comment.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+                {%endif%}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No hay comentarios aún.</p>
+        {% endif %}
+    </div>
+
+
+</div>
 {% endblock %}

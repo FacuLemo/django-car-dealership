@@ -1,12 +1,5 @@
 from django.urls import path
 
-from cars.views.car_views import (
-    CarCreateView,
-    CarDeleteView,
-    CarListView,
-    CarUpdateView,
-    CarDetailView,
-)
 from cars.views.brand_views import (
     BrandCreateView,
     BrandDeleteView,
@@ -24,6 +17,13 @@ from cars.views.car_status_views import (
     CarStatusDeleteView,
     CarStatusListView,
     CarStatusUpdateView,
+)
+from cars.views.car_views import (
+    CarCreateView,
+    CarDeleteView,
+    CarDetailView,
+    CarListView,
+    CarUpdateView,
 )
 from cars.views.category_views import (
     CategoryCreateView,
@@ -125,7 +125,7 @@ urlpatterns = [
     path(
         route="<int:id>",
         view=CarDetailView.as_view(),
-        name="car_detail"
+        name="car_detail",
     ),
     path(
         route="sell/",
@@ -138,7 +138,7 @@ urlpatterns = [
         name="car_update",
     ),
     path(
-        route="delete-sale/",
+        route="delete-sale/<int:id>",
         view=CarDeleteView.as_view(),
         name="car_delete",
     ),
@@ -150,6 +150,6 @@ urlpatterns = [
     path(
         route="delete-comment/<int:id>",
         view=DeleteComment.as_view(),
-        name="delete_comment"
-    )
+        name="delete_comment",
+    ),
 ]

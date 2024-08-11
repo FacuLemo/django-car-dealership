@@ -1,38 +1,70 @@
 {% extends "main/base.html" %}
 {% block content %}
+<div class="container mt-5">
 
-    <form action="">
-        <select name="category">
-            <option value="">Elegir categoría</option>
-        {% for id, name in category_names %}
-            <option value="{{name}}">{{name}}</option>
-        {% endfor %}
-        </select>
-        <select name="brand">
-            <option value="">Elegir marca</option>
-        {% for id, name, image in brand_names %}
-            <option value="{{name}}">{{name}}</option>
-        {% endfor %}
-        </select>
-        <select name="status">
-            <option value="">Elegir estatus</option>
-            {% for id, name in car_status %}
-                <option value="{{name}}">{{name}}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Buscar</button>
+    <!-- filtro -->
+    <form class="row g-3 mb-4" action="" method="get">
+        <div class="col-md-4">
+            <label for="category" class="form-label">Categoría</label>
+            <select id="category" name="category" class="form-select">
+                <option value="">Elegir categoría</option>
+                {% for id, name in category_names %}
+                    <option value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="brand" class="form-label">Marca</label>
+            <select id="brand" name="brand" class="form-select">
+                <option value="">Elegir marca</option>
+                {% for id, name, image in brand_names %}
+                    <option value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="status" class="form-label">Estatus</label>
+            <select id="status" name="status" class="form-select">
+                <option value="">Elegir estatus</option>
+                {% for id, name in car_status %}
+                    <option value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
     </form>
 
+   <!-- Autos -->
+<div class="row row-cols-1 row-cols-md-2 g-4">
     {% for car in cars %}
-        <p>{{car.car_model}}</p>
-        <p>{{car.category}}</p>
-        <p>{{car.car_status}}</p>
-        <p>{{car.city}}</p>
-        {% if not car.bought %} 
-            <p>A la venta!</p>
-            <p>{{car.price}}</p>
-        {% else %}
-            <p>Vendido.</p>
-        {% endif %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ car.image_url }}" class="card-img-top" alt="imagen del auto modelo {{ car.car_model }}">
+            <div class="card-body">
+                <h4 class="card-title">{{ car.car_model.brand }} {{ car.car_model }}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{{ car.category }}</h6>
+                <p class="card-text"><strong>Status:</strong> {{ car.car_status }}</p>
+                <p class="card-text"><strong>Ciudad:</strong> {{ car.city }}</p>
+                
+                {% if not car.bought %}
+                    <p class="card-text text-success my-0"><strong>A la venta!</strong></p>
+                    <p class="card-text"><strong>Precio:</strong> ${{ car.price }}</p>
+                {% else %}
+                    <p class="card-text text-danger"><strong>Vendido.</strong></p>
+                {% endif %}
+            </div>
+
+            <!-- Pie de la tarjeta -->
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <small class="text-muted">Publicado por {{ car.seller }}</small>
+                <a href="{% url 'car_detail' car.id %}" class="btn btn-outline-primary">Ver Detalles</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
+</div>
+</div>
+
 {% endblock %}
