@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views import View
 
@@ -27,8 +28,12 @@ class BrandListView(BrandView):
         )
 
 
-class BrandCreateView(LoginRequiredMixin, BrandView):
+class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, BrandView):
     template_name = "brands/create.html"
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
 
     def get(self, request):
         form = self.form_class()
@@ -52,8 +57,12 @@ class BrandCreateView(LoginRequiredMixin, BrandView):
         )
 
 
-class BrandUpdateView(LoginRequiredMixin, BrandView):
+class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, BrandView):
     template_name = "brands/update.html"
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
 
     def get(self, request, id):
         repo = self.repo()
@@ -89,7 +98,12 @@ class BrandUpdateView(LoginRequiredMixin, BrandView):
         )
 
 
-class BrandDeleteView(LoginRequiredMixin, BrandView):
+class BrandDeleteView(LoginRequiredMixin, PermissionRequiredMixin, BrandView):
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
+
     def post(self, request, id):
         repo = self.repo()
         brand = repo.get_by_id(id)

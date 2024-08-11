@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views import View
 
@@ -27,8 +28,12 @@ class CategoryListView(CategoryView):
         )
 
 
-class CategoryCreateView(LoginRequiredMixin, CategoryView):
+class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CategoryView):
     template_name = "categories/create.html"
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
 
     def get(self, request):
         form = self.form_class()
@@ -52,8 +57,12 @@ class CategoryCreateView(LoginRequiredMixin, CategoryView):
         )
 
 
-class CategoryUpdateView(LoginRequiredMixin, CategoryView):
+class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, CategoryView):
     template_name = "categories/update.html"
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
 
     def get(self, request, id):
         repo = self.repo()
@@ -85,7 +94,12 @@ class CategoryUpdateView(LoginRequiredMixin, CategoryView):
         )
 
 
-class CategoryDeleteView(LoginRequiredMixin, CategoryView):
+class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, CategoryView):
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
+
     def post(self, request, id):
         repo = self.repo()
         category = repo.get_by_id(id)

@@ -19,11 +19,9 @@ class CarListView(CarView):
     template_name = "car/list.html"
 
     def get(self, request):
-
         brand_search = request.GET.get("brand")
         category_search = request.GET.get("category")
         status_search = request.GET.get("status")
-
         repo = self.repo()
 
         if category_search is not None and category_search != "":
@@ -139,15 +137,16 @@ class CarDeleteView(LoginRequiredMixin, CarView):
         repo.delete(car)
         return redirect("car_list")
 
+
 class CarSaleView(LoginRequiredMixin, CarView):
     def post(self, request, id):
         repo = self.repo()
         sale_repo = UserBoughtCarsRepository()
-        
+
         car = repo.get_by_id(id)
         user = request.user
-        
+
         repo.set_sold(car)
         sale_repo.make_sale(user, car)
-        
+
         return redirect(request.META["HTTP_REFERER"])

@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views import View
 
@@ -27,8 +28,12 @@ class CarStatusListView(CarStatusView):
         )
 
 
-class CarStatusCreateView(LoginRequiredMixin, CarStatusView):
+class CarStatusCreateView(LoginRequiredMixin, PermissionRequiredMixin, CarStatusView):
     template_name = "car_status/create.html"
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
 
     def get(self, request):
         form = self.form_class()
@@ -52,8 +57,12 @@ class CarStatusCreateView(LoginRequiredMixin, CarStatusView):
         )
 
 
-class CarStatusUpdateView(LoginRequiredMixin, CarStatusView):
+class CarStatusUpdateView(LoginRequiredMixin, PermissionRequiredMixin, CarStatusView):
     template_name = "car_status/update.html"
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
 
     def get(self, request, id):
         repo = self.repo()
@@ -85,7 +94,12 @@ class CarStatusUpdateView(LoginRequiredMixin, CarStatusView):
         )
 
 
-class CarStatusDeleteView(LoginRequiredMixin, CarStatusView):
+class CarStatusDeleteView(LoginRequiredMixin, PermissionRequiredMixin, CarStatusView):
+    permission_required = "is_staff"
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        return redirect("index")
+
     def post(self, request, id):
         repo = self.repo()
         car_status = repo.get_by_id(id)
