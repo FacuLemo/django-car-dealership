@@ -2,9 +2,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views import View
 
-from cars.forms import CarForm
+from cars.forms import CarForm, CommentForm
 from cars.models import Car
 from cars.repositories.car_repository import CarRepository
+from cars.repositories.comment_repository import CommentRepository
 
 class CarView(View):
     model = Car
@@ -15,15 +16,56 @@ class CarListView(CarView):
     template_name = "car/list.html"
     
     def get(self, request):
-        repo = self.repo()
-        cars = repo.get_all()
         
+        brand_search = request.GET.get('brand')
+        category_search = request.GET.get('category')
+        status_search = request.GET.get('status')
+        
+        repo = self.repo()
+        
+        if category_search is not None and category_search != "":
+            cars = repo.filter_by_property_name("category", category_search)
+        else:
+            cars = repo.get_all()
+            
+        if brand_search is not None and brand_search != "":
+            cars = cars.filter(car_model__brand__name__icontains=brand_search)
+            
+        if status_search is not None and status_search != "":
+            cars = cars.filter(car_status__name=status_search)
+            
         return render(
             request,
             self.template_name,
             dict(cars=cars)
         )
-
+        
+class CarDetailView(CarView):
+    template_name = "car/detail.html"
+    
+    def get(self, request, id):
+        repo = self.repo()
+        
+        car = repo.get_or_404(id)
+        comrepo = CommentRepository()
+        comform = CommentForm(initial={
+            'user': request.user,
+            'car': car
+        })
+        
+        comments = comrepo.get_by_car(car=car)
+                
+        return render(
+            request,
+            self.template_name,
+            dict(
+                car=car,
+                comments=comments,
+                comment_form=comform,
+            )
+        )
+        
+        
 class CarCreateView(LoginRequiredMixin, CarView):
     template_name = "car/create.html"
     

@@ -6,6 +6,7 @@ from cars.models import (
     CarStatus, 
     Category,
     Car,
+    Comment
 )
 from utils.check_exists import check_exists
 
@@ -86,4 +87,18 @@ class CarForm(forms.ModelForm):
             "category": forms.Select(),
             "car_status": forms.Select(),
             "city": forms.Select()
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            "comment",
+            "user",
+            "car"
+        ]
+        widgets = {
+            "comment": forms.TextInput(),
+            "user": forms.HiddenInput(),
+            "car": forms.HiddenInput()
         }

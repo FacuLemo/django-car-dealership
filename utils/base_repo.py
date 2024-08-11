@@ -17,7 +17,7 @@ class BaseRepository():
     
     def filter_by_property_name(self, property, value):
         kwargs = {
-            '{0}__name'.format(property): value
+            '{0}__name__icontains'.format(property): value
         }
         return self.model.objects.filter(**kwargs)
     

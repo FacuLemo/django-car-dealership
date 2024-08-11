@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+{% block content %}
+    {{car.car_model}}
+    <hr>
+    {% if comments %}
+        {% for comment in comments %}
+            {{comment.comment}}
+            <form action="{% url 'delete_comment' comment.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        {% endfor %}
+    {% endif %}
+
+    <form action="{% url 'create_comment' %}" method="post">
+        {% csrf_token %}
+        {{comment_form.comment}}
+        {{comment_form.user}}
+        {{comment_form.car}}
+        <button type="submit">Comentar</button>
+    </form>
+    {% if form.errors %}
+    {% for field, errors in form.errors.items %}
+        <li><strong>{{field}}</strong>: {{error}}</li>
+    {% endfor %}
+{% endif %}
+{% endblock %}

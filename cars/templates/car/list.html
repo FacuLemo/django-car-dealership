@@ -1,5 +1,28 @@
 {% extends "main/base.html" %}
 {% block content %}
+
+    <form action="">
+        <select name="category">
+            <option value="">Elegir categoría</option>
+        {% for id, name in category_names %}
+            <option value="{{name}}">{{name}}</option>
+        {% endfor %}
+        </select>
+        <select name="brand">
+            <option value="">Elegir marca</option>
+        {% for id, name, image in brand_names %}
+            <option value="{{name}}">{{name}}</option>
+        {% endfor %}
+        </select>
+        <select name="status">
+            <option value="">Elegir estatus</option>
+            {% for id, name in car_status %}
+                <option value="{{name}}">{{name}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
+
     {% for car in cars %}
         <p>{{car.car_model}}</p>
         <p>{{car.category}}</p>

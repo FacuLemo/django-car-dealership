@@ -24,7 +24,7 @@
   python3 manage.py runserver
 ```
 
-/home <- lista de todos los autos, filter by status
+/home <- lista de todos los autos, filter by status :check:
 /profile/:account <- usuario & todos sus autos
 /car (list & create & update) [list es privado, create & update es acceso parcial a autor + staff] :check:
 /category (list & create & update) [privados (para staff y admin)] :check:

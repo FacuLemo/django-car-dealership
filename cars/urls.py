@@ -5,6 +5,7 @@ from cars.views.car_views import (
     CarDeleteView,
     CarListView,
     CarUpdateView,
+    CarDetailView,
 )
 from cars.views.brand_views import (
     BrandCreateView,
@@ -29,6 +30,10 @@ from cars.views.category_views import (
     CategoryDeleteView,
     CategoryListView,
     CategoryUpdateView,
+)
+from cars.views.comment_views import (
+    CreateComment,
+    DeleteComment,
 )
 
 urlpatterns = [
@@ -118,6 +123,11 @@ urlpatterns = [
         name="car_list",
     ),
     path(
+        route="<int:id>",
+        view=CarDetailView.as_view(),
+        name="car_detail"
+    ),
+    path(
         route="sell/",
         view=CarCreateView.as_view(),
         name="car_create",
@@ -132,4 +142,14 @@ urlpatterns = [
         view=CarDeleteView.as_view(),
         name="car_delete",
     ),
+    path(
+        route="create-comment/",
+        view=CreateComment.as_view(),
+        name="create_comment",
+    ),
+    path(
+        route="delete-comment/<int:id>",
+        view=DeleteComment.as_view(),
+        name="delete_comment"
+    )
 ]
