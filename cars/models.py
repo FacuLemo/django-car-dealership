@@ -106,6 +106,7 @@ class Car(models.Model):
         City,
         on_delete=models.RESTRICT,
     )
+    image = models.ImageField(upload_to="car_images/", null=True)
 
     def __str__(self):
         return self.car_model.name

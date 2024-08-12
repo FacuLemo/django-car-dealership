@@ -74,6 +74,7 @@ class CarForm(forms.ModelForm):
             "category",
             "car_status",
             "city",
+            "image",
         ]
         widgets = {
             "price": forms.NumberInput(),
@@ -81,6 +82,7 @@ class CarForm(forms.ModelForm):
             "category": forms.Select(),
             "car_status": forms.Select(),
             "city": forms.Select(),
+            "image": forms.FileInput(),
         }
 
 

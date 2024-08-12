@@ -4,7 +4,6 @@ from django.contrib import admin
 
 from cars.models import (
     Car,
-    CarImage,
     CarModel,
     CarStatus,
     Category,
@@ -17,7 +16,6 @@ from cars.models import (
 )
 
 admin.site.register(Car)
-admin.site.register(CarImage)
 admin.site.register(CarModel)
 admin.site.register(CarStatus)
 admin.site.register(Category)

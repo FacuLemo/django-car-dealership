@@ -25,8 +25,6 @@ class UserProfileView(RoleView):
         bought_cars = repocars.filter_by_user_id(user.id)
         cosmetic_roles = reporoles.filter_by_user_id(user.id)
 
-        print(bought_cars)
-
         return render(
             request,
             self.template_name,
