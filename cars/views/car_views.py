@@ -52,7 +52,6 @@ class CarDetailView(CarView):
 
     def get(self, request, id):
         repo = self.repo()
-
         car = repo.get_or_404(id)
         comrepo = CommentRepository()
         comform = CommentForm(
@@ -61,7 +60,6 @@ class CarDetailView(CarView):
                 "car": car,
             }
         )
-
         comments = comrepo.get_by_car(car=car)
 
         return render(

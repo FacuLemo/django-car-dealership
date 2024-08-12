@@ -41,9 +41,18 @@
     {% for car in cars %}
     <div class="col">
         <div class="card h-100 shadow-sm">
-            <img src="{{ car.image_url }}" class="card-img-top" alt="imagen del auto modelo {{ car.car_model }}">
+            {% if car.image %}
+            <div class="mx-auto">
+                <img src="{{ car.image.url }}" class="card-img-top" alt="imagen del auto modelo {{ car.car_model }}" style="height: 200px; width: auto;">
+            </div>
+            {% endif %}
             <div class="card-body">
-                <h4 class="card-title">{{ car.car_model.brand }} {{ car.car_model }}</h4>
+                <div class="d-flex my-2">
+                    {% if car.car_model.brand.image%}
+                    <img src="{{ car.car_model.brand.image.url }}" class="mx-2" alt="logo de la marca {{ car.car_model.brand }}" style="height: 42px; width: auto;">
+                    {% endif %}
+                    <h3 class="card-title">{{ car.car_model.brand }} {{ car.car_model }}</h3>
+                </div>
                 <h6 class="card-subtitle mb-2 text-muted">{{ car.category }}</h6>
                 <p class="card-text"><strong>Status:</strong> {{ car.car_status }}</p>
                 <p class="card-text"><strong>Ciudad:</strong> {{ car.city }}</p>
