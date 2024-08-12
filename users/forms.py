@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -37,12 +38,18 @@ class UserRegisterForm(UserCreationForm):
             "last_name": forms.TextInput(attrs={"class": "form-control"}),
         }
 
-    def clean_email(self):
+    def clean(self):
         email = check_exists(self, "email")
-        return email
+        password1 = self.cleaned_data.get('password1', None)
+        password2 = self.cleaned_data.get('password2', None)
+        if password1 == password2:
+            return self.cleaned_data
+        else:
+            raise ValidationError('Las contraseñas no son iguales')
 
     def save(self, commit=True):
         user = super().save(commit=False)
+        
         user.username = self.cleaned_data.get("username")
         user.email = self.cleaned_data.get("email")
         user.password = self.cleaned_data.get("password1")
