@@ -1,32 +1,11 @@
-### Foro de compraventa de autos, por:
+# Proyecto
+
+Foro de compra-venta de autos nuevos/usados.
+
+Realizado por
 - [Facundo Lemo](https://github.com/FacuLemo)
 - [Luca Petrocchi](https://github.com/lucapetrocchi)
 
-# Set up
-1. Crear entorno virtual:
-```bash
-  python3 -m venv venv
-```
-2. Activarlo:
-```bash
-  source venv/bin/activate
-```
-3. Instalar dependencias:
-```bash
-  pip install -r requirements.txt
-```
-4. Migrar base de datos:
-```bash
-  python3 manage.py migrate
-```
-5. Iniciar proyecto:
-```bash
-  python3 manage.py runserver
-```
-
-# Proyecto
-
-Foro de compraventa de autos nuevos/usados.
 
 Tiene funcionalidades CRUD disponibles para el staff y superusers para marcas de autos, categorías, y roles cosméticos. Estas no son accessibles para usuarios comunes.
 
@@ -85,6 +64,29 @@ cars/ make-sale/<int:id> (POST) [usada al comprar un auto a la venta]
 users/ <int:id> (GET) [perfil]
 
 ```
+
+# Set up
+1. Crear entorno virtual:
+```bash
+  python3 -m venv venv
+```
+2. Activarlo:
+```bash
+  source venv/bin/activate
+```
+3. Instalar dependencias:
+```bash
+  pip install -r requirements.txt
+```
+4. Migrar base de datos:
+```bash
+  python3 manage.py migrate
+```
+5. Iniciar proyecto:
+```bash
+  python3 manage.py runserver
+```
+
 # Imágenes
 
 ![readme1](/readme_images/readme1.png)
