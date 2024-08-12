@@ -32,7 +32,7 @@ Tiene funcionalidades CRUD disponibles para el staff y superusers para marcas de
 
 Cada usuario puede publicar autos para venta, y otros pueden comentar en el post de venta. Al efectuar una compra, el auto se marca como vendido y comienza a aparecer en el perfil del comprador. 
 
-Los autos pueden filtrarse por estatus, modelo, marca, y si están vendidos o no.
+Los autos pueden filtrarse por estatus, modelo, y marca.
 
 Las rutas disponibles para el staff son:
 
