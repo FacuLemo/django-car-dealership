@@ -82,17 +82,23 @@ class CarCreateView(LoginRequiredMixin, CarView):
 
     def get(self, request):
         form = self.form_class()
-        return render(request, self.template_name, dict(form=form))
+        return render(
+            request, 
+            self.template_name,
+            dict(
+                form=form,
+            )
+        )
 
     def post(self, request):
-        form = self.form_class(request.POST)
-
+        form = self.form_class(request.POST, request.FILES)
+            
         if form.is_valid():
             obj = form.save(commit=False)
             obj.seller = request.user
             obj.save()
             return redirect("car_list")
-
+        
         return render(
             request,
             self.template_name,
