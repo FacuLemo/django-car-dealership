@@ -23,8 +23,8 @@ from cars.views.car_views import (
     CarDeleteView,
     CarDetailView,
     CarListView,
-    CarUpdateView,
     CarSaleView,
+    CarUpdateView,
 )
 from cars.views.category_views import (
     CategoryCreateView,

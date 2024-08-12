@@ -57,7 +57,9 @@ class RoleUpdateView(RoleView):
     def get(self, request, id):
         repo = self.repo()
         role = repo.get_or_404(id)
-        form = self.form_class(instance=role)
+        form = self.form_class(
+            instance=role,
+        )
 
         return render(
             request,
@@ -71,7 +73,10 @@ class RoleUpdateView(RoleView):
     def post(self, request, id):
         repo = self.repo()
         role = repo.get_or_404(id)
-        form = self.form_class(request.POST, instance=role)
+        form = self.form_class(
+            request.POST,
+            instance=role,
+        )
         if form.is_valid():
             form.save()
             return redirect("role_list")

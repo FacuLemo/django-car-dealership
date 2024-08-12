@@ -1,7 +1,8 @@
-from cars.models import UserBoughtCars
 from typing import Optional
+
 from django.db import models
 
+from cars.models import UserBoughtCars
 from utils.base_repo import BaseRepository
 
 
@@ -13,8 +14,5 @@ class UserBoughtCarsRepository(BaseRepository):
         return self.model.objects.filter(user_id=uid).all()
 
     def make_sale(self, user, car):
-        sale = self.model(
-            user=user,
-            car=car
-        )
+        sale = self.model(user=user, car=car)
         sale.save()

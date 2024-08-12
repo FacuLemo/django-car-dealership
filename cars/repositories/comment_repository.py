@@ -1,4 +1,4 @@
-from cars.models import Comment, Car
+from cars.models import Car, Comment
 from utils.base_repo import BaseRepository
 
 
@@ -8,4 +8,3 @@ class CommentRepository(BaseRepository):
 
     def get_by_car(self, car: Car):
         return self.model.objects.filter(car__id__exact=car.id)
-        

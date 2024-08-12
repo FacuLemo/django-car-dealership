@@ -1,7 +1,8 @@
-from users.models import UserCosmeticRoles
 from typing import Optional
+
 from django.db import models
 
+from users.models import UserCosmeticRoles
 from utils.base_repo import BaseRepository
 
 

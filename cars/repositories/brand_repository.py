@@ -1,5 +1,6 @@
-from utils.base_repo import BaseRepository
 from cars.models import Brand
+from utils.base_repo import BaseRepository
+
 
 class BrandRepository(BaseRepository):
     def __init__(self):
