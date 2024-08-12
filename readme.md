@@ -87,6 +87,10 @@ users/ <int:id> (GET) [perfil]
   python3 manage.py runserver
 ```
 
+# Diseño de Base de Datos
+
+![readme9](/readme_images/readme9.png)
+
 # Imágenes
 
 ![readme1](/readme_images/readme1.png)
