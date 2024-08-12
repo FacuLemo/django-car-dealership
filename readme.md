@@ -1,4 +1,4 @@
-### Car Dealership Management System University project made by:
+### Foro de compraventa de autos, por:
 - [Facundo Lemo](https://github.com/FacuLemo)
 - [Luca Petrocchi](https://github.com/lucapetrocchi)
 
@@ -85,6 +85,7 @@ cars/ make-sale/<int:id> (POST) [usada al comprar un auto a la venta]
 users/ <int:id> (GET) [perfil]
 
 ```
+# Imágenes
 
 ![readme1](/readme_images/readme1.png)
 ![readme2](/readme_images/readme2.png)
