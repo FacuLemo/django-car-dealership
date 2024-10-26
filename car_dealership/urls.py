@@ -23,8 +23,11 @@ from django.urls import include, path
 from car_dealership.login_views import LoginView, LogoutView, RegisterView
 from car_dealership.main_views import IndexView
 
+from .routers import router
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
     path(
         route="",
         view=IndexView.as_view(),
