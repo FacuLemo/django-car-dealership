@@ -1,12 +1,23 @@
-# Proyecto
+# Índice
+- [Proyecto](#proyecto)
+- [Web App](#web-app)
+- [Api Rest](#api-rest)
+- [Setup](#set-up)
+- [Diseño de base de datos](#diseño-de-base-de-datos)
+- [Imágenes del proyecto](#imágenes)
 
-Foro de compra-venta de autos nuevos/usados.
+# Proyecto
+Foro de compra-venta de autos nuevos/usados. Está desarrollado en Django, y forma parte del trabajo final integrador de la materia Ingeniería de software del iTEC.
 
 Realizado por
 - [Facundo Lemo](https://github.com/FacuLemo)
 - [Luca Petrocchi](https://github.com/lucapetrocchi)
 
+Profesor a cargo
+- [Matías Lucero](https://github.com/matiasjavierlucero/)
 
+
+# Web App
 Tiene funcionalidades CRUD disponibles para el staff y superusers para marcas de autos, categorías, y roles cosméticos. Estas no son accessibles para usuarios comunes.
 
 Cada usuario puede publicar autos para venta, y otros pueden comentar en el post de venta. Al efectuar una compra, el auto se marca como vendido y comienza a aparecer en el perfil del comprador. 
@@ -64,6 +75,32 @@ cars/ make-sale/<int:id> (POST) [usada al comprar un auto a la venta]
 users/ <int:id> (GET) [perfil]
 
 ```
+
+# Api Rest
+Adicionalmente a la navegación web, este proyecto también es operable a través de una API REST, desarrollada con Django-Rest-Framework
+
+Se puede consultar (método GET) a cualquier ruta sin estar logeado. Sin embargo, para cualquier otro método se debe ser un usuario STAFF, autenticado a través del basic-auth que otorgan los clientes de api-rest como postman o thunderclient.
+
+Las rutas que soporta la api son:
+
+```
+localhost:8000/api/ #índice para la api.
+
+localhost:8000/api/brand/ #Lista las marcas de autos.
+localhost:8000/api/brand/<id> #Muestra una marca específica.
+
+localhost:8000/api/category/ #Lista las categorías posibles para un auto.
+localhost:8000/api/category/<id> #Muestra una categoría específica.
+
+localhost:8000/api/car-status/ #Lista los estados posibles para un auto.
+localhost:8000/api/car-status/<id> #Muestra un estado sespecífico.
+
+localhost:8000/api/car-model/ #Lista los modelos de auto, anida la marca.
+localhost:8000/api/car-model/<id> #Muestra un modelo de auto específico, anida la marca.
+
+localhost:8000/api/city/ #Lista las ciudades, anidadas. READ ONLY, incluso para staff.
+```
+
 
 # Set up
 1. Crear entorno virtual:
