@@ -9,6 +9,22 @@ router = routers.DefaultRouter()
 
 
 router.register(
-    r"Category",
+    r"category",
     cars_views.CategoryViewSet,
+)
+router.register(
+    r"brand",
+    cars_views.BrandViewSet,
+)
+router.register(
+    r"car-status",
+    cars_views.CarStatusViewSet,
+)
+router.register(
+    r"car-model",
+    cars_views.CarModelViewSet,
+)
+router.register(
+    r"city",
+    cars_views.CityViewSet,
 )
