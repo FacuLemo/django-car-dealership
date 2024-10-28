@@ -28,3 +28,11 @@ router.register(
     r"city",
     cars_views.CityViewSet,
 )
+router.register(
+    r"car",
+    cars_views.CarViewSet,
+)
+router.register(
+    r"comment",
+    cars_views.CommentViewSet,
+)

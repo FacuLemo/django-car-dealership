@@ -1,10 +1,12 @@
 from rest_framework import serializers
 
 from .models import (
+    Car,
     CarModel,
     CarStatus,
     Category,
     City,
+    Comment,
 )
 
 
@@ -74,22 +76,62 @@ class CitySerializer(serializers.ModelSerializer):
         ]
 
 
-# class PersonalNestedSerializer(serializers.ModelSerializer):
-#     creado_por = UserNestedSerializer()
-#     modificado_por = UserNestedSerializer()
-#     persona = PersonaNestedSerializer()
-#     puesto = PuestoSerializer()
+class CarNestedSerializer(serializers.ModelSerializer):
+    seller = serializers.CharField(source="seller.username")
+    car_model = CarModelNestedSerializer()
+    category = CategorySerializer()
+    car_status = CarStatusSerializer()
+    city = CitySerializer()
 
-#     class Meta:
-#         model = Personal
-#         fields = [
-#             "id",
-#             "fecha_de_ingreso",
-#             "fecha_de_creacion",
-#             "fecha_de_modificacion",
-#             "activo",
-#             "creado_por",
-#             "modificado_por",
-#             "persona",
-#             "puesto",
-#         ]
+    class Meta:
+        model = Car
+        fields = [
+            "id",
+            "seller",
+            "bought",
+            "price",
+            "car_model",
+            "category",
+            "car_status",
+            "city",
+        ]
+
+
+class CarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = [
+            "id",
+            "seller",
+            "bought",
+            "price",
+            "car_model",
+            "category",
+            "car_status",
+            "city",
+        ]
+
+
+class CommentNestedSerializer(serializers.ModelSerializer):
+    # to be used ONLY in "api/car/id/comments"
+    user = serializers.CharField(source="user.username")
+
+    class Meta:
+        model = Comment
+        fields = [
+            "id",
+            "comment",
+            "user",
+        ]
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    # to be used by creating a comment.
+    class Meta:
+        model = Comment
+        fields = [
+            "id",
+            "comment",
+            "car",
+            "user",
+        ]

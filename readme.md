@@ -99,6 +99,14 @@ localhost:8000/api/car-model/ #[GET,POST] Lista o crea los modelos de auto. Si e
 localhost:8000/api/car-model/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un modelo de auto específico. Si es consulta, anida la marca.
 
 localhost:8000/api/city/ #[GET] Lista las ciudades, anidadas. READ ONLY, incluso para staff.
+
+localhost:8000/api/car/ #[GET,POST] Lista o crea publicaciones de autos. Si es get anida todo.
+localhost:8000/api/car-model/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un posteo de auto específico. Si es consulta, anida todo.
+localhost:8000/api/car-model/<id>/comments #[GET] Muestra el auto consultado en un campo "car" y todos sus comentarios en un campo "comments". 
+
+localhost:8000/api/comment/ #[GET] Lista las ciudades, anidadas. READ ONLY, incluso para staff.
+
+
 ```
 
 
