@@ -83,22 +83,22 @@ Se puede consultar (método GET) a cualquier ruta sin estar logeado. Sin embargo
 
 Las rutas que soporta la api son:
 
-```
-localhost:8000/api/ #índice para la api.
+```python
+localhost:8000/api/ #[GET] índice para la api.
 
-localhost:8000/api/brand/ #Lista las marcas de autos.
-localhost:8000/api/brand/<id> #Muestra una marca específica.
+localhost:8000/api/brand/ #[GET,POST] Lista o crea las marcas de autos.
+localhost:8000/api/brand/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una marca específica.
 
-localhost:8000/api/category/ #Lista las categorías posibles para un auto.
-localhost:8000/api/category/<id> #Muestra una categoría específica.
+localhost:8000/api/category/ #[GET,POST]Lista o crea las categorías posibles para un auto.
+localhost:8000/api/category/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una categoría específica.
 
-localhost:8000/api/car-status/ #Lista los estados posibles para un auto.
-localhost:8000/api/car-status/<id> #Muestra un estado sespecífico.
+localhost:8000/api/car-status/ #[GET,POST]Lista o crea los estados posibles para un auto.
+localhost:8000/api/car-status/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un estado sespecífico.
 
-localhost:8000/api/car-model/ #Lista los modelos de auto, anida la marca.
-localhost:8000/api/car-model/<id> #Muestra un modelo de auto específico, anida la marca.
+localhost:8000/api/car-model/ #[GET,POST] Lista o crea los modelos de auto. Si es get anida la marca.
+localhost:8000/api/car-model/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un modelo de auto específico. Si es consulta, anida la marca.
 
-localhost:8000/api/city/ #Lista las ciudades, anidadas. READ ONLY, incluso para staff.
+localhost:8000/api/city/ #[GET] Lista las ciudades, anidadas. READ ONLY, incluso para staff.
 ```
 
 
