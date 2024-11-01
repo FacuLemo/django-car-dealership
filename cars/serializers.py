@@ -118,7 +118,7 @@ class CitySerializer(serializers.ModelSerializer):
 
 
 class CarNestedSerializer(serializers.ModelSerializer):
-    seller = serializers.CharField(source="seller.username")
+    seller = UserSerializer()
     car_model = CarModelNestedSerializer()
     category = CategorySerializer()
     car_status = CarStatusSerializer()
@@ -179,15 +179,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class UserBoughtCarsNestedSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField()
+    user = UserSerializer()
     car = CarSerializer()
-
-    # Con esto me ahorro crear un userSerializer
-    def get_user(self, obj):
-        return {
-            "id": obj.user.id,
-            "username": obj.user.username,
-        }
 
     class Meta:
         model = UserBoughtCars
