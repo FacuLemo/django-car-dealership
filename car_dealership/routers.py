@@ -2,12 +2,13 @@ from rest_framework import routers
 
 from cars import api_views as cars_views
 
-# from users import api_views as users_views
-
-
 router = routers.DefaultRouter()
 
 
+router.register(
+    r"user",
+    cars_views.UserViewSet,
+)
 router.register(
     r"category",
     cars_views.CategoryViewSet,
@@ -35,4 +36,8 @@ router.register(
 router.register(
     r"comment",
     cars_views.CommentViewSet,
+)
+router.register(
+    r"user-bought-cars",
+    cars_views.UserBoughtCarsViewSet,
 )

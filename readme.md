@@ -80,11 +80,15 @@ users/ <int:id> (GET) [perfil]
 Adicionalmente a la navegación web, este proyecto también es operable a través de una API REST, desarrollada con Django-Rest-Framework
 
 Se puede consultar (método GET) a cualquier ruta sin estar logeado. Sin embargo, para cualquier otro método se debe ser un usuario STAFF, autenticado a través del basic-auth que otorgan los clientes de api-rest como postman o thunderclient.
+La única excepción a esto es la ruta de /user. En este caso para consultarla se debe estar logeado sí o sí, y para el resto de métodos se debe ser STAFF.
 
 Las rutas que soporta la api son:
 
 ```python
 localhost:8000/api/ #[GET] índice para la api.
+
+localhost:8000/api/user/ #[GET,POST] Lista o crea un usuario usuarios.
+localhost:8000/api/user/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una usuario específico.
 
 localhost:8000/api/brand/ #[GET,POST] Lista o crea las marcas de autos.
 localhost:8000/api/brand/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una marca específica.
@@ -105,8 +109,20 @@ localhost:8000/api/car-model/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borr
 localhost:8000/api/car-model/<id>/comments #[GET] Muestra el auto consultado en un campo "car" y todos sus comentarios en un campo "comments". 
 
 localhost:8000/api/comment/ #[GET] Lista las ciudades, anidadas. READ ONLY, incluso para staff.
+localhost:8000/api/user-bought-cars/ #[GET] Lista la tabla de relación entre usuarios y autos comprados, anidado. READ ONLY, incluso para staff.
 
+```
 
+Todos los endpoint, exceptuando User, usan todos los campos de su modelo para el Create, Put o Patch.  Si un campo fuese un Foreign Key, se usa el id.
+
+Ejemplo de create user:
+```json
+{
+  "username": "Matías",
+  "email": "mati@mati.com",
+  "is_staff": false,
+  "password": "12345"
+}
 ```
 
 
