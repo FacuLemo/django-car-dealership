@@ -105,15 +105,16 @@ localhost:8000/api/car-model/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borr
 localhost:8000/api/city/ #[GET] Lista las ciudades, anidadas. READ ONLY, incluso para staff.
 
 localhost:8000/api/car/ #[GET,POST] Lista o crea publicaciones de autos. Si es get anida todo.
-localhost:8000/api/car-model/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un posteo de auto específico. Si es consulta, anida todo.
-localhost:8000/api/car-model/<id>/comments #[GET] Muestra el auto consultado en un campo "car" y todos sus comentarios en un campo "comments". 
+localhost:8000/api/car/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un posteo de auto específico. Si es consulta, anida todo.
+localhost:8000/api/car/<id>/comments #[GET] Muestra el auto consultado en un campo "car" y todos sus comentarios en un campo "comments". 
 
-localhost:8000/api/comment/ #[GET] Lista las ciudades, anidadas. READ ONLY, incluso para staff.
+localhost:8000/api/comment/ #[POST, DELETE, PUT, PATCH] Permite agregar y borrar comentarios.
 localhost:8000/api/user-bought-cars/ #[GET] Lista la tabla de relación entre usuarios y autos comprados, anidado. READ ONLY, incluso para staff.
 
 ```
-
-Todos los endpoint, exceptuando User, usan todos los campos de su modelo para el Create, Put o Patch.  Si un campo fuese un Foreign Key, se usa el id.
+Los endpoint retornan todos los campos de su respectivo modelo. Si son campos con claves foráneas, retornan el objeto anidado.
+Al hacer post, también se deben enviar todos los campos del modelo (menos el id propio), y en los campos relacionales se debe enviar el ID correspondiente.
+La única excepción a esto es User y los endpoint read only. Create examples más abajo.
 
 Ejemplo de create user:
 ```json
@@ -122,6 +123,20 @@ Ejemplo de create user:
   "email": "mati@mati.com",
   "is_staff": false,
   "password": "12345"
+}
+```
+y al consultar user devuelve sólo los campos: `id, username y email`.
+
+La ruta `city` y `user-bought-cars` son read only, sólo permiten el método GET.
+City lista los campos `id, name, province y country`. donde province y country contienen un string con el nombre de la provincia/país correspondiente. User-bought-cars muestra todos los campos de su modelo.
+
+Comment, por otro lado, sólo permite POST, DELETE, PUT y PATCH. Para consultar comentarios de debe hacer desde `car/id/comments`
+Ejemplo de create comment:
+```json
+{
+    "comment":"Este auto tenía mi tío, nunca lo dejó a pata. ¿Precio?",
+    "car":11,
+    "user":4
 }
 ```
 

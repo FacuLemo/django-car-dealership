@@ -27,6 +27,7 @@ from .serializers import (
     CarStatusSerializer,
     CategorySerializer,
     CitySerializer,
+    CommentNestedSerializer,
     CommentSerializer,
     UserBoughtCarsNestedSerializer,
     UserCreateSerializer,
@@ -104,7 +105,7 @@ class CarViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_204_NO_CONTENT,  # ponele que 204
             )
 
-        serialized_comments = CommentSerializer(comments, many=True).data
+        serialized_comments = CommentNestedSerializer(comments, many=True).data
         return Response(
             {
                 "car": serialized_car,
@@ -119,7 +120,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all().order_by("-id")
     permission_classes = [IsStaffOrReadOnly]
     serializer_class = CommentSerializer
-    http_method_names = ["post", "delete"]
+    http_method_names = ["post", "delete", "put", "patch"]
 
 
 class UserBoughtCarsViewSet(viewsets.ReadOnlyModelViewSet):
