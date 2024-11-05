@@ -1,38 +1,40 @@
 {% extends "main/base.html" %}
 {% block content %}
+{% load i18n %}
+
 <div class="container mt-5">
 
     <!-- filtro -->
     <form class="row g-3 mb-4" action="" method="get">
         <div class="col-md-4">
-            <label for="category" class="form-label">Categoría</label>
+            <label for="category" class="form-label">{% trans "Categoría" %}</label>
             <select id="category" name="category" class="form-select">
-                <option value="">Elegir categoría</option>
+                <option value="">{% trans "Elegir categoría" %}</option>
                 {% for id, name in category_names %}
                     <option value="{{ name }}">{{ name }}</option>
                 {% endfor %}
             </select>
         </div>
         <div class="col-md-4">
-            <label for="brand" class="form-label">Marca</label>
+            <label for="brand" class="form-label">{% trans "Marca" %}</label>
             <select id="brand" name="brand" class="form-select">
-                <option value="">Elegir marca</option>
+                <option value="">{% trans "Elegir marca" %}</option>
                 {% for id, name, image in brand_names %}
                     <option value="{{ name }}">{{ name }}</option>
                 {% endfor %}
             </select>
         </div>
         <div class="col-md-4">
-            <label for="status" class="form-label">Estatus</label>
+            <label for="status" class="form-label">{% trans "Estatus" %}</label>
             <select id="status" name="status" class="form-select">
-                <option value="">Elegir estatus</option>
+                <option value="">{% trans "Elegir estatus" %}</option>
                 {% for id, name in car_status %}
                     <option value="{{ name }}">{{ name }}</option>
                 {% endfor %}
             </select>
         </div>
         <div class="col-12 text-end">
-            <button type="submit" class="btn btn-primary">Buscar</button>
+            <button type="submit" class="btn btn-primary">{% trans "Buscar" %}</button>
         </div>
     </form>
 
@@ -54,19 +56,19 @@
                     <h3 class="card-title">{{ car.car_model.brand }} {{ car.car_model }}</h3>
                 </div>
                 <h6 class="card-subtitle mb-2 text-muted">{{ car.category }}</h6>
-                <p class="card-text"><strong>Status:</strong> {{ car.car_status }}</p>
-                <p class="card-text"><strong>Ciudad:</strong> {{ car.city }}</p>
+                <p class="card-text"><strong>{% trans "Status" %}:</strong> {{ car.car_status }}</p>
+                <p class="card-text"><strong>{% trans "Ciudad" %}:</strong> {{ car.city }}</p>
                 
                 {% if not car.bought %}
-                    <p class="card-text text-success my-0"><strong>A la venta!</strong></p>
-                    <p class="card-text"><strong>Precio:</strong> ${{ car.price }}</p>
+                    <p class="card-text text-success my-0"><strong>{% trans "A la venta!" %}</strong></p>
+                    <p class="card-text"><strong>{% trans "Precio" %}:</strong> ${{ car.price }}</p>
                 {% else %}
-                    <p class="card-text text-danger"><strong>Vendido.</strong></p>
+                    <p class="card-text text-danger"><strong>{% trans "Vendido" %}.</strong></p>
                 {% endif %}
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
-                <small class="text-muted">Publicado por {{ car.seller }}</small>
-                <a href="{% url 'car_detail' car.id %}" class="btn btn-outline-primary">Ver Detalles</a>
+                <small class="text-muted">{% trans "Publicado por" %} {{ car.seller }}</small>
+                <a href="{% url 'car_detail' car.id %}" class="btn btn-outline-primary">{% trans "Ver Detalles" %}</a>
             </div>
         </div>
     </div>

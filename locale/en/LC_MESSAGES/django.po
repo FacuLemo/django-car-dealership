@@ -1,0 +1,534 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-05 16:27+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: car_dealership/settings.py:129
+msgid "English"
+msgstr "English"
+
+#: car_dealership/settings.py:130
+msgid "Español"
+msgstr "Spanish"
+
+#: car_dealership/templates/login/login.html:9
+msgid "Ingrese al sitio"
+msgstr "Login"
+
+#: car_dealership/templates/login/login.html:13
+msgid "Usuario"
+msgstr "User"
+
+#: car_dealership/templates/login/login.html:17
+#: car_dealership/templates/login/register.html:39
+msgid "Contraseña"
+msgstr "Password"
+
+#: car_dealership/templates/login/login.html:21
+#: car_dealership/templates/main/base.html:41
+msgid "Ingresar"
+msgstr "Login"
+
+#: car_dealership/templates/login/login.html:25
+msgid "¿No tienes una cuenta?"
+msgstr "Don't have an account?"
+
+#: car_dealership/templates/login/register.html:10
+#, fuzzy
+#| msgid "Registrarse"
+msgid "Registrar Usuario"
+msgstr "Sign in"
+
+#: car_dealership/templates/login/register.html:15
+msgid "Nombre de Usuario"
+msgstr "Username"
+
+#: car_dealership/templates/login/register.html:27
+msgid "Correo"
+msgstr "Email"
+
+#: car_dealership/templates/login/register.html:51
+msgid "Repita"
+msgstr "Repeat"
+
+#: car_dealership/templates/login/register.html:51
+msgid "contraseña"
+msgstr "password"
+
+#: car_dealership/templates/login/register.html:63
+#: cars/templates/brands/list.html:20 cars/templates/car_model/list.html:19
+#: cars/templates/car_status/list.html:17
+#: cars/templates/categories/list.html:18 users/templates/roles/list.html:18
+msgid "Nombre"
+msgstr "Name"
+
+#: car_dealership/templates/login/register.html:75
+msgid "Apellido"
+msgstr "Last Name"
+
+#: car_dealership/templates/login/register.html:87
+msgid "Registrarse"
+msgstr "Sign in"
+
+#: car_dealership/templates/main/base.html:9
+#, fuzzy
+#| msgid "MiniBlog"
+msgid "MiniBlog Autos"
+msgstr "MiniBlog"
+
+#: car_dealership/templates/main/base.html:17
+msgid "Concesionaria Miniblog"
+msgstr "Miniblog Dealership"
+
+#: car_dealership/templates/main/base.html:25
+msgid "Inicio"
+msgstr "Start"
+
+#: car_dealership/templates/main/base.html:29
+msgid "Mi perfil"
+msgstr "My profile"
+
+#: car_dealership/templates/main/base.html:32 cars/templates/car/create.html:8
+msgid "Publicar un auto"
+msgstr "Publish a car"
+
+#: car_dealership/templates/main/base.html:37
+msgid "Logeado como"
+msgstr "Logged in as"
+
+#: car_dealership/templates/main/base.html:38
+msgid "Salir"
+msgstr "Log Out"
+
+#: car_dealership/templates/main/base.html:40
+msgid "No estás logeado"
+msgstr "You're not logged in"
+
+#: car_dealership/templates/main/index.html:9
+msgid "¡Bienvenido"
+msgstr "Welcome"
+
+#: car_dealership/templates/main/index.html:14
+msgid "Ver autos"
+msgstr "See cars"
+
+#: car_dealership/templates/main/index.html:16
+msgid "Ver mi perfil"
+msgstr "See my profile"
+
+#: car_dealership/templates/main/index.html:18
+msgid "Inicia sesión"
+msgstr "Login"
+
+#: cars/models.py:11 cars/models.py:22 cars/models.py:38 cars/models.py:48
+#: cars/models.py:71 cars/models.py:81 cars/models.py:97 cars/models.py:148
+#: users/models.py:9
+msgid "name"
+msgstr "name"
+
+#: cars/models.py:28 cars/models.py:164
+msgid "image"
+msgstr "image"
+
+#: cars/models.py:55
+msgid "year"
+msgstr "year"
+
+#: cars/models.py:61
+msgid "brand"
+msgstr "brand"
+
+#: cars/models.py:87
+msgid "country"
+msgstr "country"
+
+#: cars/models.py:103
+msgid "province"
+msgstr "province"
+
+#: cars/models.py:114
+msgid "seller"
+msgstr "seller"
+
+#: cars/models.py:118
+msgid "bought"
+msgstr "bought"
+
+#: cars/models.py:123
+msgid "price"
+msgstr "price"
+
+#: cars/models.py:128
+msgid "car_model"
+msgstr "car model"
+
+#: cars/models.py:133
+msgid "category"
+msgstr "category"
+
+#: cars/models.py:138
+msgid "car_status"
+msgstr "car status"
+
+#: cars/models.py:143
+msgid "city"
+msgstr "city"
+
+#: cars/models.py:159 cars/models.py:189 cars/models.py:205
+msgid "car"
+msgstr "car"
+
+#: cars/models.py:169
+msgid "description"
+msgstr "description"
+
+#: cars/models.py:179
+msgid "comment"
+msgstr "comment"
+
+#: cars/models.py:184 cars/models.py:200 users/models.py:24
+msgid "user"
+msgstr "user"
+
+#: cars/models.py:209
+msgid "date"
+msgstr "date"
+
+#: cars/templates/brands/create.html:8
+msgid "Crear nueva marca"
+msgstr "Creating new brand"
+
+#: cars/templates/brands/create.html:27 cars/templates/brands/update.html:27
+#: cars/templates/car/create.html:13 cars/templates/car/update.html:13
+#: cars/templates/car_model/create.html:14
+#: cars/templates/car_model/update.html:13
+#: cars/templates/car_status/create.html:13
+#: cars/templates/car_status/update.html:13
+#: cars/templates/categories/create.html:14
+#: cars/templates/categories/update.html:14
+#: users/templates/roles/create.html:13 users/templates/roles/update.html:14
+#: users/templates/user_roles/create.html:15
+#: users/templates/user_roles/update.html:13
+msgid "Guardar"
+msgstr "Save"
+
+#: cars/templates/brands/list.html:10
+msgid "Gestión de"
+msgstr "Managing"
+
+#: cars/templates/brands/list.html:10
+msgid "Marcas"
+msgstr "Brands"
+
+#: cars/templates/brands/list.html:11
+msgid "Agregar Marca"
+msgstr "Create Brand"
+
+#: cars/templates/brands/list.html:19
+#, fuzzy
+#| msgid "image"
+msgid "Imagen"
+msgstr "image"
+
+#: cars/templates/brands/list.html:21 cars/templates/car_model/list.html:20
+#: cars/templates/car_status/list.html:18
+#: cars/templates/categories/list.html:19 users/templates/roles/list.html:19
+msgid "Acciones"
+msgstr "Actions"
+
+#: cars/templates/brands/list.html:36 cars/templates/car/detail.html:36
+#: cars/templates/car_model/list.html:31 cars/templates/car_status/list.html:27
+#: cars/templates/categories/list.html:28 users/templates/roles/list.html:29
+msgid "Editar"
+msgstr "Edit"
+
+#: cars/templates/brands/list.html:38 cars/templates/brands/list.html:54
+#: cars/templates/brands/list.html:64 cars/templates/car/detail.html:93
+#: cars/templates/car_model/list.html:32 cars/templates/car_model/list.html:57
+#: cars/templates/car_status/list.html:28
+#: cars/templates/car_status/list.html:43
+#: cars/templates/car_status/list.html:53
+#: cars/templates/categories/list.html:29
+#: cars/templates/categories/list.html:54 users/templates/roles/list.html:30
+#: users/templates/roles/list.html:55
+msgid "Eliminar"
+msgstr "Delete"
+
+#: cars/templates/brands/list.html:54 cars/templates/car/list.html:19
+#: cars/templates/car_model/list.html:18 users/templates/users/profile.html:41
+msgid "Marca"
+msgstr "Brand"
+
+#: cars/templates/brands/list.html:58
+msgid "¿Estás seguro de que deseas eliminar la marca"
+msgstr "Are you sure you want to delete brand"
+
+#: cars/templates/brands/list.html:63 cars/templates/car_model/list.html:56
+#: cars/templates/car_status/list.html:52
+#: cars/templates/categories/list.html:53 users/templates/roles/list.html:54
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: cars/templates/brands/update.html:8
+msgid "Editar marca"
+msgstr "Editing brand"
+
+#: cars/templates/car/detail.html:22 cars/templates/car/list.html:59
+#, fuzzy
+#| msgid "car_status"
+msgid "Status"
+msgstr "car status"
+
+#: cars/templates/car/detail.html:23 cars/templates/car/list.html:60
+msgid "Ciudad"
+msgstr "City"
+
+#: cars/templates/car/detail.html:24
+#, fuzzy
+#| msgid "description"
+msgid "Descripción"
+msgstr "description"
+
+#: cars/templates/car/detail.html:26 cars/templates/car/list.html:63
+msgid "A la venta!"
+msgstr "On sale!"
+
+#: cars/templates/car/detail.html:27 cars/templates/car/list.html:64
+msgid "Precio"
+msgstr "Price"
+
+#: cars/templates/car/detail.html:29 cars/templates/car/list.html:66
+msgid "Vendido"
+msgstr "Sold"
+
+#: cars/templates/car/detail.html:33 cars/templates/car/list.html:70
+msgid "Publicado por"
+msgstr "Published by"
+
+#: cars/templates/car/detail.html:39
+msgid "Borrar"
+msgstr "Delete"
+
+#: cars/templates/car/detail.html:45
+msgid "COMPRAR!"
+msgstr "BUY!"
+
+#: cars/templates/car/detail.html:54
+msgid "Dejar un Comentario"
+msgstr "Post"
+
+#: cars/templates/car/detail.html:62
+#, fuzzy
+#| msgid "comment"
+msgid "Comentar"
+msgstr "comment"
+
+#: cars/templates/car/detail.html:88
+msgid "Comentado por"
+msgstr "Posted by"
+
+#: cars/templates/car/detail.html:100
+msgid "No hay comentarios aún"
+msgstr "No comments yet"
+
+#: cars/templates/car/list.html:10
+#, fuzzy
+#| msgid "category"
+msgid "Categoría"
+msgstr "category"
+
+#: cars/templates/car/list.html:12
+msgid "Elegir categoría"
+msgstr "Choose category"
+
+#: cars/templates/car/list.html:21
+msgid "Elegir marca"
+msgstr "Choose brand"
+
+#: cars/templates/car/list.html:28
+#, fuzzy
+#| msgid "car_status"
+msgid "Estatus"
+msgstr "car status"
+
+#: cars/templates/car/list.html:30
+msgid "Elegir estatus"
+msgstr "Choose status"
+
+#: cars/templates/car/list.html:37
+msgid "Buscar"
+msgstr "Search"
+
+#: cars/templates/car/list.html:71
+msgid "Ver Detalles"
+msgstr "See Details"
+
+#: cars/templates/car/update.html:8
+msgid "Editar Auto"
+msgstr "Editing Car"
+
+#: cars/templates/car_model/create.html:9
+msgid "Crear nuevo modelo de auto"
+msgstr "Creating new car model"
+
+#: cars/templates/car_model/list.html:8
+msgid "Gestión de Modelos de Auto"
+msgstr "Managing Car Models"
+
+#: cars/templates/car_model/list.html:9
+msgid "Agregar nuevo Modelo de Auto"
+msgstr "Create new Car Model"
+
+#: cars/templates/car_model/list.html:17
+msgid "Año"
+msgstr "Year"
+
+#: cars/templates/car_model/list.html:51
+msgid "¿Estás seguro de que deseas eliminar el modelo de auto"
+msgstr "Are you sure you want to delete car model"
+
+#: cars/templates/car_model/update.html:8
+msgid "Editar Modelo de auto"
+msgstr "Editing car model"
+
+#: cars/templates/car_status/create.html:8
+msgid "Crear nuevo estado de Auto"
+msgstr "Creating new car status"
+
+#: cars/templates/car_status/list.html:8
+msgid "Gestión de Estados de Auto"
+msgstr "Managing Car Status"
+
+#: cars/templates/car_status/list.html:9
+msgid "Agregar Estado de Auto"
+msgstr "Create car status"
+
+#: cars/templates/car_status/list.html:43
+msgid "Estado de auto"
+msgstr "Car status"
+
+#: cars/templates/car_status/list.html:47
+msgid "¿Estás seguro de que deseas eliminar el estado de auto"
+msgstr "Are you sure you want to delete car status"
+
+#: cars/templates/car_status/update.html:8
+msgid "Editar Estado de auto"
+msgstr "Editing car status"
+
+#: cars/templates/categories/create.html:9
+msgid "Crear nueva categoría"
+msgstr "Creating new Category"
+
+#: cars/templates/categories/list.html:9
+msgid "Gestión de Categorías"
+msgstr "Managing Categories"
+
+#: cars/templates/categories/list.html:10
+msgid "Agregar Categoría"
+msgstr "Add Category"
+
+#: cars/templates/categories/list.html:44
+msgid "Eliminar Categoría"
+msgstr "Delete Category"
+
+#: cars/templates/categories/list.html:48
+msgid "¿Estás seguro de que deseas eliminar la categoría"
+msgstr "Are you sure you want to delete category"
+
+#: cars/templates/categories/update.html:9
+msgid "Editar categoría"
+msgstr "Editing category"
+
+#: users/models.py:13
+msgid "color"
+msgstr "color"
+
+#: users/models.py:29
+msgid "cosmetic_role"
+msgstr "cosmetic role"
+
+#: users/templates/roles/create.html:8
+msgid "Crear nuevo Rol"
+msgstr "Creating new Role"
+
+#: users/templates/roles/list.html:9
+msgid "Agregar Rol"
+msgstr "Add Role"
+
+#: users/templates/roles/list.html:17
+#, fuzzy
+#| msgid "color"
+msgid "Color"
+msgstr "color"
+
+#: users/templates/roles/list.html:45
+msgid "Eliminar Rol"
+msgstr "Delete Role"
+
+#: users/templates/roles/list.html:49
+msgid "¿Estás seguro de que deseas eliminar el rol"
+msgstr "Are you sure you want to delete role"
+
+#: users/templates/roles/update.html:9
+msgid "Editar rol"
+msgstr "Editing role"
+
+#: users/templates/user_roles/create.html:10
+msgid "Asignar nuevo Rol a Usuario"
+msgstr "Give new Role to User"
+
+#: users/templates/user_roles/update.html:8
+msgid "Editar relación de Rol de"
+msgstr "Edit Role relationship of user"
+
+#: users/templates/users/profile.html:8
+#, python-format
+msgid " Perfil de %(user)s"
+msgstr "%(user)s's Profile"
+
+#: users/templates/users/profile.html:13
+msgid "Roles cosméticos"
+msgstr "Cosmetic roles"
+
+#: users/templates/users/profile.html:27
+msgid "no tiene ningún rol cosmético"
+msgstr "has no cosmetic role"
+
+#: users/templates/users/profile.html:35
+#, python-format
+msgid "Autos que %(user)s ha comprado: "
+msgstr "%(user)s's Purchased Cars"
+
+#: users/templates/users/profile.html:40
+msgid "Imagen del auto"
+msgstr "Car image"
+
+#: users/templates/users/profile.html:42
+msgid "Modelo"
+msgstr "Model"
+
+#: users/templates/users/profile.html:62
+msgid "no ha comprado ningún auto"
+msgstr "hasn't bought any cars"
+
+#~ msgid "Registrar"
+#~ msgstr "Sign in"
+
+#~ msgid "Autos"
+#~ msgstr "Cars"
+

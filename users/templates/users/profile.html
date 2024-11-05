@@ -1,15 +1,16 @@
 {% extends "main/base.html" %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-5">
     <div class="row mb-3">
         <div class="col-md-6">
-            <h2>Perfil de {{ user }}</h2>
+            <h2>{% blocktrans %} Perfil de {{ user }}{% endblocktrans %}</h2>
         </div>
     </div>
 
     {% if cosmetic_roles|length > 0 %}
-    <p>Roles cosméticos:</p>
+    <p>{% trans "Roles cosméticos" %}:</p>
     <div class="row mx-0">
         {% for role in cosmetic_roles %}
         <div class="col-md-4 mb-2">
@@ -23,7 +24,7 @@
     </div>
     {% else %}
     <div class="alert alert-warning" role="alert">
-        <h5>{{ user }} no tiene ningún rol cosmético.</h5>
+        <h5>{{ user }} {% trans "no tiene ningún rol cosmético" %}.</h5>
     </div>
     {% endif %}
 
@@ -31,14 +32,14 @@
     <!-- si tiene autos comprados -->
     <hr class="my-5">
     {% if bought_cars|length > 0 %}
-    <h6>Autos que {{user}} ha comprado:</h3>
+    <h6>{% blocktrans %}Autos que {{user}} ha comprado: {% endblocktrans %}</h3>
         <table class="table table-bordered ">
             <thead class="table-light">
                 <tr>
                     <th>#</th>
-                    <th>imagen del auto</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
+                    <th>{% trans "Imagen del auto" %}</th>
+                    <th>{% trans "Marca" %}</th>
+                    <th>{% trans "Modelo" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +59,7 @@
         </table>
         {% else %}
         <div class="alert alert-warning mt-5" role="alert">
-            <h5>{{ user }} no ha comprado ningún auto.</h5>
+            <h5>{{ user }} {% trans "no ha comprado ningún auto" %}.</h5>
         </div>
     {% endif %}
 </div>

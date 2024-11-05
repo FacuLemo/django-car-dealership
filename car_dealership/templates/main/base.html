@@ -1,10 +1,12 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MiniBlog Autos</title>
+    <title>{% trans "MiniBlog Autos" %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -12,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">Concesionaria Miniblog</a>
+            <a class="navbar-brand" href="{% url 'index' %}">{% trans "Concesionaria Miniblog" %}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -20,23 +22,23 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">inicio</a>
+                        <a class="nav-link" href="{% url 'index' %}">{% trans "Inicio" %}</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_profile' user.id%}">Mi perfil</a>
+                        <a class="nav-link" href="{% url 'user_profile' user.id%}">{% trans "Mi perfil" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'car_create' %}">Publicar un auto</a>
+                        <a class="nav-link" href="{% url 'car_create' %}">{% trans "Publicar un auto" %}</a>
                     </li>
                     {% endif %}
                 </ul>
                 {% if user.is_authenticated %}
-                <p class="mx-2 my-0">Logeado como {{user}}</p>
-                <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'logout' %}">Salir</a>
+                <p class="mx-2 my-0">{% trans "Logeado como" %} {{user}}</p>
+                <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'logout' %}">{% trans "Salir" %}</a>
                 {% else %}
-                <p class="mx-2 my-0">No estás logeado</p>
-                <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'login' %}">Ingresar</a>
+                <p class="mx-2 my-0">{% trans "No estás logeado" %}</p>
+                <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'login' %}">{% trans "Ingresar" %}</a>
                 {% endif %}
 
             </div>

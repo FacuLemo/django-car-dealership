@@ -1,13 +1,14 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load i18n %}
 
 
 {% block content %}
 <!-- Container Principal -->
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Gestión de Marcas</h2>
-        <a class="btn btn-success" href="{% url 'brand_create' %}">Agregar Marca</a>
+        <h2>{% trans "Gestión de" %} {% trans "Marcas" %}</h2>
+        <a class="btn btn-success" href="{% url 'brand_create' %}">{% trans "Agregar Marca" %}</a>
     </div>
 
     <!-- Tabla CRUD -->
@@ -15,9 +16,9 @@
         <thead class="table-light">
             <tr>
                 <th>#</th>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Acciones</th>
+                <th>{% trans "Imagen" %}</th>
+                <th>{% trans "Nombre" %}</th>
+                <th>{% trans "Acciones" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -32,9 +33,9 @@
                 </td>
                 <td>{{ brand.name }}</td>
                 <td>
-                    <a href="{% url 'brand_update' brand.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'brand_update' brand.id %}" class="btn btn-warning btn-sm">{% trans "Editar" %}</a>
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#deletebrandModal{{ brand.id }}">Eliminar</button>
+                        data-bs-target="#deletebrandModal{{ brand.id }}">{% trans "Eliminar" %}</button>
                 </td>
             </tr>
             {% endfor %}
@@ -50,17 +51,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deletebrandModalLabel{{ brand.id }}">Eliminar Marca</h5>
+                <h5 class="modal-title" id="deletebrandModalLabel{{ brand.id }}">{% trans "Eliminar" %} {% trans "Marca" %}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar la marca "{{ brand.name }}"?</p>
+                <p>{% trans "¿Estás seguro de que deseas eliminar la marca" %} "{{ brand.name }}"?</p>
             </div>
             <div class="modal-footer">
                 <form action="{% url 'brand_delete' brand.id %}" method="post">
                     {% csrf_token %}
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancelar" %}</button>
+                    <button type="submit" class="btn btn-danger">{% trans "Eliminar" %}</button>
                 </form>
             </div>
         </div>
