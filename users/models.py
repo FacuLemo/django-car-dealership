@@ -31,3 +31,14 @@ class UserCosmeticRoles(models.Model):
 
     def __str__(self):
         return self.cosmetic_role.name
+
+class Profile(models.Model):
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
+    lang = models.CharField(
+        max_length=30,
+        choices=[
+            ('en', 'English'),
+            ('es', 'Español')
+        ],
+        default='es'
+    )

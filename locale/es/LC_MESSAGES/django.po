@@ -105,10 +105,8 @@ msgid "Mi perfil"
 msgstr "Mi perfil"
 
 #: car_dealership/templates/main/base.html:32 cars/templates/car/create.html:8
-#, fuzzy
-#| msgid "Publicar un "
 msgid "Publicar un auto"
-msgstr "Publicar un "
+msgstr "Publicar un auto"
 
 #: car_dealership/templates/main/base.html:37
 msgid "Logeado como"

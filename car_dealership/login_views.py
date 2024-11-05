@@ -10,7 +10,7 @@ from django.shortcuts import (
 from django.views import View
 
 from users.forms import UserRegisterForm
-
+from users.models import Profile
 
 class LoginView(View):
     def get(self, request):
@@ -60,6 +60,7 @@ class RegisterView(View):
 
         if form.is_valid():
             user = form.save()
+            Profile.objects.create(user=user, lang='es')
             login(request, user)
             return redirect("index")
 
