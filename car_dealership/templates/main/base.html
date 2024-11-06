@@ -35,6 +35,12 @@
                 </ul>
                 {% if user.is_authenticated %}
                 <p class="mx-2 my-0">{% trans "Logeado como" %} {{user}}</p>
+                {% if user.profile.lang %}
+                <form action="{% url 'user_lang_toggle' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary mx-2 my-0">{{user.profile.lang}}</button>
+                </form>
+            {% endif %}
                 <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'logout' %}">{% trans "Salir" %}</a>
                 {% else %}
                 <p class="mx-2 my-0">{% trans "No estás logeado" %}</p>

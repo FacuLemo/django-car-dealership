@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from cars.repositories.user_bought_cars_repository import UserBoughtCarsRepository
 from users.repositories.user_repository import UserRepository
 from users.repositories.user_role_repository import UserRolesRepository
 
+from users.models import Profile
 
 class RoleView(View):
     model = User
@@ -34,3 +35,12 @@ class UserProfileView(RoleView):
                 cosmetic_roles=cosmetic_roles,
             ),
         )
+
+class ToggleLangView(RoleView):
+    def post(self, request):
+        profile = Profile.objects.filter(user=request.user).first()
+        print("🚀 ~ profile:", profile.lang)
+        if profile:
+            profile.lang = "es" if profile.lang  == "en" else "en"
+            profile.save()
+        return redirect(request.META.get('HTTP_REFERER', '/'))

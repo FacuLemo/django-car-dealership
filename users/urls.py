@@ -12,7 +12,7 @@ from users.views.user_roles_views import (
     UserRolesListView,
     UserRolesUpdateView,
 )
-from users.views.user_views import UserProfileView
+from users.views.user_views import UserProfileView, ToggleLangView
 
 urlpatterns = [
     path(
@@ -60,4 +60,9 @@ urlpatterns = [
         view=UserRolesDeleteView.as_view(),
         name="user_role_delete",
     ),
+    path(
+        route="toggle_lang",
+        view=ToggleLangView.as_view(),
+        name="user_lang_toggle"
+    )
 ]
