@@ -3,7 +3,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from car_dealership.permissions import (
-    IsStaffOrAuthenticatedReadOnly,
     IsStaffOrReadOnly,
 )
 
@@ -15,7 +14,6 @@ from .models import (
     Category,
     City,
     Comment,
-    User,
     UserBoughtCars,
 )
 from .serializers import (
@@ -30,20 +28,7 @@ from .serializers import (
     CommentNestedSerializer,
     CommentSerializer,
     UserBoughtCarsNestedSerializer,
-    UserCreateSerializer,
-    UserSerializer,
 )
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by("-id")
-    permission_classes = [IsStaffOrAuthenticatedReadOnly]
-
-    # este método me muestra el CreateSerializer sólo si no es consulta.
-    def get_serializer_class(self):
-        if self.action in ["list", "retrieve"]:
-            return UserSerializer
-        return UserCreateSerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

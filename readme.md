@@ -89,6 +89,7 @@ localhost:8000/api/ #[GET] índice para la api.
 
 localhost:8000/api/user/ #[GET,POST] Lista o crea un usuario usuarios.
 localhost:8000/api/user/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una usuario específico.
+localhost:8000/api/user/<id>/toggle_lang/ #[POST] Post sin body, cambia el lenguaje de un usuario específico. Requiere ser STAFF.
 
 localhost:8000/api/brand/ #[GET,POST] Lista o crea las marcas de autos.
 localhost:8000/api/brand/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una marca específica.
