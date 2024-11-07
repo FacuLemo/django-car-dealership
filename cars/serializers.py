@@ -5,6 +5,7 @@ from users.serializers import (
 )
 
 from .models import (
+    Brand,
     Car,
     CarModel,
     CarStatus,
@@ -26,7 +27,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
+        model = Brand
         fields = [
             "id",
             "name",

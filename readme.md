@@ -87,60 +87,104 @@ Las rutas que soporta la api son:
 ```python
 localhost:8000/api/ #[GET] índice para la api.
 
+#user:
 localhost:8000/api/user/ #[GET,POST] Lista o crea un usuario usuarios.
 localhost:8000/api/user/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una usuario específico.
 localhost:8000/api/user/<id>/toggle_lang/ #[POST] Post sin body, cambia el lenguaje de un usuario específico. Requiere ser STAFF.
-
-localhost:8000/api/brand/ #[GET,POST] Lista o crea las marcas de autos.
-localhost:8000/api/brand/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una marca específica.
-
-localhost:8000/api/category/ #[GET,POST]Lista o crea las categorías posibles para un auto.
-localhost:8000/api/category/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una categoría específica.
-
-localhost:8000/api/car-status/ #[GET,POST]Lista o crea los estados posibles para un auto.
-localhost:8000/api/car-status/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un estado sespecífico.
-
-localhost:8000/api/car-model/ #[GET,POST] Lista o crea los modelos de auto. Si es get anida la marca.
-localhost:8000/api/car-model/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un modelo de auto específico. Si es consulta, anida la marca.
-
-localhost:8000/api/city/ #[GET] Lista las ciudades, anidadas. READ ONLY, incluso para staff.
-
-localhost:8000/api/car/ #[GET,POST] Lista o crea publicaciones de autos. Si es get anida todo.
-localhost:8000/api/car/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un posteo de auto específico. Si es consulta, anida todo.
-localhost:8000/api/car/<id>/comments #[GET] Muestra el auto consultado en un campo "car" y todos sus comentarios en un campo "comments". 
-
-localhost:8000/api/comment/ #[POST, DELETE, PUT, PATCH] Permite agregar y borrar comentarios.
-localhost:8000/api/user-bought-cars/ #[GET] Lista la tabla de relación entre usuarios y autos comprados, anidado. READ ONLY, incluso para staff.
-
-```
-Los endpoint retornan todos los campos de su respectivo modelo. Si son campos con claves foráneas, retornan el objeto anidado.
-Al hacer post, también se deben enviar todos los campos del modelo (menos el id propio), y en los campos relacionales se debe enviar el ID correspondiente.
-La única excepción a esto es User y los endpoint read only. Create examples más abajo.
-
-Ejemplo de create user:
-```json
+create example:
+"""json
 {
   "username": "Matías",
   "email": "mati@mati.com",
   "is_staff": false,
   "password": "12345"
 }
-```
-y al consultar user devuelve sólo los campos: `id, username y email`.
+"""
 
-La ruta `city` y `user-bought-cars` son read only, sólo permiten el método GET.
-City lista los campos `id, name, province y country`. donde province y country contienen un string con el nombre de la provincia/país correspondiente. User-bought-cars muestra todos los campos de su modelo.
+#brand:
+localhost:8000/api/brand/ #[GET,POST] Lista o crea las marcas de autos.
+localhost:8000/api/brand/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una marca específica.
+create example:
+"""json
+{
+  "name": "Audi"
+}
+"""
 
-Comment, por otro lado, sólo permite POST, DELETE, PUT y PATCH. Para consultar comentarios de debe hacer desde `car/id/comments`
+#category:
+localhost:8000/api/category/ #[GET,POST]Lista o crea las categorías posibles para un auto.
+localhost:8000/api/category/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra una categoría específica.
+create example:
+"""json
+{
+  "name": "Camión",
+}
+"""
+
+#car-status:
+localhost:8000/api/car-status/ #[GET,POST]Lista o crea los estados posibles para un auto.
+localhost:8000/api/car-status/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un estado específico.
+create example:
+"""json
+{
+  "name": "0 KM",
+}
+"""
+
+#car-model:
+localhost:8000/api/car-model/ #[GET,POST] Lista o crea los modelos de auto. Si es get anida la marca.
+localhost:8000/api/car-model/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un modelo de auto específico. Si es consulta, anida la marca.
+create example:
+"""json
+{
+  "brand": 2
+  "name": "Fiesta",
+  "year": "2020",
+}
+"""
+
+#city:
+localhost:8000/api/city/ #[GET] Lista las ciudades, anidadas. READ ONLY, incluso para staff.
+
+#car:
+localhost:8000/api/car/ #[GET,POST] Lista o crea publicaciones de autos. Si es get anida todo.
+localhost:8000/api/car/<id> #[GET,PATCH,PUT, DELETE] Muestra, edita o borra un posteo de auto específico. Si es consulta, anida todo.
+localhost:8000/api/car/<id>/comments #[GET] Muestra el auto consultado en un campo "car" y todos sus comentarios en un campo "comments". 
+create example:
+"""json
+{
+  "seller": 2,
+  "price": 8499.99,
+  "car_model": 2,
+  "category": 5,
+  "car_status":1,
+  "city": 1
+}
+"""
+
+#comment:
+localhost:8000/api/comment/ #[POST, DELETE, PUT, PATCH] Permite agregar y borrar comentarios.
 Ejemplo de create comment:
-```json
+"""json
 {
     "comment":"Este auto tenía mi tío, nunca lo dejó a pata. ¿Precio?",
     "car":11,
     "user":4
 }
-```
+"""
 
+#user-bought-cars:
+localhost:8000/api/user-bought-cars/ #[GET] Lista la tabla de relación entre usuarios y autos comprados, anidado. READ ONLY, incluso para staff.
+
+```
+Los endpoint retornan todos los campos de su respectivo modelo. Si son campos con claves foráneas, retornan el objeto anidado.
+Al hacer post, también se deben enviar todos los campos del modelo (menos el id propio), y en los campos relacionales se debe enviar el ID correspondiente.
+La única excepción a esto es User y los endpoint read only.
+Al consultar user devuelve sólo los campos: `id, username y email`.
+
+La ruta `city` y `user-bought-cars` son read only, sólo permiten el método GET.
+City lista los campos `id, name, province y country`. donde province y country contienen un string con el nombre de la provincia/país correspondiente. User-bought-cars muestra todos los campos de su modelo.
+Comment, por otro lado, sólo permite POST, DELETE, PUT y PATCH. Para consultar comentarios de debe hacer desde `car/id/comments`
 
 # Set up
 1. Crear entorno virtual:
